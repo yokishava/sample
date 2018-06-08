@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="cordova-plugin-swift-camera" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>swiftcamera</name>
+    <js-module name="swiftcamera" src="www/swiftcamera.js">
+        <clobbers target="cordova.plugins.swiftcamera" />
+    </js-module>
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="swiftcamera">
+                <param name="ios-package" value="swiftcamera" />
+                <param name="onload" value="true" />
+            </feature>
+        </config-file>
+        <preference name="CAMERA_USAGE_DESCRIPTION" default=" " />
+        <config-file target="*-Info.plist" parent="NSCameraUsageDescription">
+            <string>$CAMERA_USAGE_DESCRIPTION</string>
+        </config-file>
+        <preference name="LOCATION_WHEN_IN_USE_USAGE_DESCRIPTION" default=" " />
+        <config-file target="*-Info.plist" parent="NSLocationWhenInUseUsageDescription">
+            <string>$LOCATION_WHEN_IN_USE_USAGE_DESCRIPTION</string>
+        </config-file>
+        <source-file src="src/ios/app1.c" />
+        <source-file src="src/ios/app1.h" />
+        <source-file src="src/ios/app5.c" />
+        <source-file src="src/ios/app5.h" />
+        <source-file src="src/ios/BoardImageView.swift" />
+        <source-file src="src/ios/BoardInfo.swift" />
+        <source-file src="src/ios/BoardItemValueDao.h" />
+        <source-file src="src/ios/BoardItemValueDao.mm" />
+        <source-file src="src/ios/BoardPhoto.swift" />
+        <source-file src="src/ios/ButtonsConfigration.swift" />
+        <source-file src="src/ios/CameraButtonDelegate.swift" />
+        <source-file src="src/ios/common.c" />
+        <source-file src="src/ios/common.h" />
+        <source-file src="src/ios/ConstructionDao.swift" />
+        <source-file src="src/ios/CurrentSettingsValue.swift" />
+        <source-file src="src/ios/CWrapper.h" />
+        <source-file src="src/ios/CWrapper.m" />
+        <source-file src="src/ios/DatabaseAccess.swift" />
+        <source-file src="src/ios/DateFormat.swift" />
+        <source-file src="src/ios/exif.c" />
+        <source-file src="src/ios/exif.h" />
+        <source-file src="src/ios/ExifHelper.swift" />
+        <source-file src="src/ios/ExtensionClass.swift" />
+        <source-file src="src/ios/FileSystemAccess.swift" />
+        <source-file src="src/ios/humidity.png" />
+        <source-file src="src/ios/ic_flash_auto_image.png" />
+        <source-file src="src/ios/ic_flash_off_image.png" />
+        <source-file src="src/ios/ic_flash_on_image.png" />
+        <source-file src="src/ios/ic_rotate_lock.png" />
+        <source-file src="src/ios/ic_rotate_on.png" />
+        <source-file src="src/ios/icon_gps.png" />
+        <source-file src="src/ios/LandscapeCameraView.swift" />
+        <source-file src="src/ios/LocationManager.swift" />
+        <source-file src="src/ios/MeasurementXmpInfo.h" />
+        <source-file src="src/ios/MeasurementXmpInfo.mm" />
+        <source-file src="src/ios/MetaData.swift" />
+        <source-file src="src/ios/PhotoInfo.swift" />
+        <source-file src="src/ios/PortraitCameraView.swift" />
+        <source-file src="src/ios/PreviewController.swift" />
+        <source-file src="src/ios/sha256.c" />
+        <source-file src="src/ios/sha256.h" />
+        <source-file src="src/ios/SQLiteDatabase.swift" />
+        <source-file src="src/ios/SQLiteError.swift" />
+        <source-file src="src/ios/swiftcamera.swift" />
+        <source-file src="src/ios/ViewController.swift" />
+        <source-file src="src/ios/writeHashLib.c" />
+        <source-file src="src/ios/writeHashLib.h" />
+        <source-file src="src/ios/XMPInfo.h" />
+        <source-file src="src/ios/XMPInfo.mm" />
+        <source-file src="src/ios/XMPUtils.h" />
+        <source-file src="src/ios/XMPUtils.mm" />
+        <source-file src="src/ios/zoom_in.png" />
+
+
+        <framework src="AVFoundation.framework" />
+        <framework src="ImageIO.framework" />
+        <framework src="CoreLocation.framework" />
+        <framework src="MobileCoreServices.framework" />
+
+        <dependency id="cordova-plugin-add-swift-support" version="1.7.2"/>
+    </platform>
+</plugin>

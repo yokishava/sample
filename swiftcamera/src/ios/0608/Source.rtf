@@ -1,0 +1,4395 @@
+{\rtf1\ansi\ansicpg932\cocoartf1561\cocoasubrtf400
+{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;\f1\fswiss\fcharset0 Helvetica;\f2\fnil\fcharset128 HiraginoSans-W3;
+}
+{\colortbl;\red255\green255\blue255;\red0\green116\blue0;\red255\green255\blue255;\red0\green0\blue0;
+\red170\green13\blue145;\red63\green110\blue116;\red46\green13\blue110;\red196\green26\blue22;\red92\green38\blue153;
+\red38\green71\blue75;\red28\green0\blue207;\red100\green56\blue32;}
+{\*\expandedcolortbl;;\csgenericrgb\c0\c45600\c0;\csgenericrgb\c100000\c100000\c100000;\csgenericrgb\c0\c0\c0;
+\csgenericrgb\c66500\c5200\c56900;\csgenericrgb\c24700\c43100\c45600;\csgenericrgb\c18100\c5200\c43100;\csgenericrgb\c77000\c10200\c8600;\csgenericrgb\c35900\c14900\c60100;
+\csgenericrgb\c14900\c27800\c29400;\csgenericrgb\c11000\c0\c81000;\csgenericrgb\c39100\c22000\c12500;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww15340\viewh14680\viewkind0
+\deftab543
+\pard\tx543\pardeftab543\pardirnatural\partightenfactor0
+
+\f0\fs22 \cf2 \cb3 //    func insert(boardPhoto: BoardPhoto) throws \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //        let insertSQL = "INSERT INTO BoardPhoto (boardId, photoFileName, isUSBSynced, isSCSynced, createdDateTime, updateDateTime) VALUES (?, ?, ?, ?, ?, ?);"
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //        var insertStatement = try prepareStatement(sql: insertSQL)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //        if sqlite3_prepare_v2(dbPointer, insertSQL, -1, &insertStatement, nil) == SQLITE_OK \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            //let id: Int32 = 1
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            //let name: NSString = "Ray"
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            //let usb = false
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            //let scs = false
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            //let cd = dateFormatter.string(from: Date())
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            //let up = dateFormatter.string(from: Date())
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            // 2
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            sqlite3_bind_int(insertStatement, 1,
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //                             boardPhoto.boardID)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            // 3
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            sqlite3_bind_text(insertStatement, 2, boardPhoto.photo.utf8String, -1, nil)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            sqlite3_bind_text(insertStatement, 3, String(boardPhoto.isUSBSynced), -1, nil)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            sqlite3_bind_text(insertStatement, 4, String(boardPhoto.isSySynced), -1, nil)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            sqlite3_bind_text(insertStatement, 5, dateFormatter.string(from: boardPhoto.createDateTime), -1, nil)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            sqlite3_bind_text(insertStatement, 6, dateFormatter.string(from: boardPhoto.updateDateTime), -1, nil)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            // 4
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            if sqlite3_step(insertStatement) == SQLITE_DONE \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //                print("Successfully inserted row.")
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            \} else \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //                print("Could not insert row.")
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //        \} else \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            print("INSERT statement could not be prepared.")
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //        \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //        // 5
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //        //sqlite3_finalize(dbPointer)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //        sqlite3_finalize(insertStatement)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //    \}\
+\
+\
+\pard\tx543\pardeftab543\pardirnatural\partightenfactor0
+\cf4     \cf2 //
+\f2 \'92\'c7\'89\'c1
+\f1\fs24 \cf0 \
+\pard\tx543\pardeftab543\pardirnatural\partightenfactor0
+
+\f0\fs22 \cf2 //    func insertBoardPhoto(boardPhoto: BoardPhoto) throws \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //        let insertSQL = "INSERT INTO BoardPhoto (boardId, photoFileName, isUSBSynced, isSCSynced, createdDateTime, updateDateTime) VALUES (?, ?, ?, ?, ?, ?);"
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //        let insertStatement = try prepareStatement(sql: insertSQL)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //        defer \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            sqlite3_finalize(dbPointer)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //        \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //        guard sqlite3_bind_int(insertStatement, 1, boardPhoto.boardID) == SQLITE_OK else \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            print(SQliteError.Step(message: errorMessage))
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            throw SQliteError.Step(message: errorMessage)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //        \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //        guard sqlite3_bind_text(insertStatement, 2, boardPhoto.photo.utf8String, -1, nil) == SQLITE_OK else \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            throw SQliteError.Step(message: errorMessage)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //        \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //        guard sqlite3_bind_text(insertStatement, 3, String(boardPhoto.isUSBSynced), -1, nil) == SQLITE_OK else \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            throw SQliteError.Step(message: errorMessage)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //        \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //        guard sqlite3_bind_text(insertStatement, 4, String(boardPhoto.isSySynced), -1, nil) == SQLITE_OK else \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            throw SQliteError.Step(message: errorMessage)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //        \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //        guard sqlite3_bind_text(insertStatement, 5, dateFormatter.string(from: boardPhoto.createDateTime), -1, nil) == SQLITE_OK else \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            throw SQliteError.Step(message: errorMessage)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //        \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //        guard sqlite3_bind_text(insertStatement, 6, dateFormatter.string(from: boardPhoto.updateDateTime), -1, nil) == SQLITE_OK else \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            throw SQliteError.Step(message: errorMessage)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //        \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //        guard sqlite3_step(insertStatement) == SQLITE_DONE else \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            throw SQliteError.Step(message: errorMessage)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //        \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //        print("Successfully inserted row.")
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //    \}\
+\
+\pard\tx543\pardeftab543\pardirnatural\partightenfactor0
+\cf4     \cf5 private\cf4  \cf5 func\cf4  addModel() \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf5 if\cf4  \cf5 let\cf4  database = \cf6 db\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf5 do\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf5 try\cf4  database.insertBoardPhoto(boardPhoto: model\ulth \ulc4 )
+\f1\fs24 \cf0 \ulnone \
+\pard\tx543\pardeftab543\pardirnatural\partightenfactor0
+
+\f0\fs22 \cf4                 \cf7 print\cf4 (\cf8 "successfully write data in table."\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \} \cf5 catch\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf7 print\cf4 (\cf8 "unable write data in table."\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4     \}\
+\
+\cf5 		do\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf5 try\cf4  \cf6 db\cf4 ?.insert(boardPhoto: model\ulth )
+\f1\fs24 \cf0 \ulnone \
+
+\f0\fs22 \cf4         \} \cf5 catch\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf7 print\cf4 (\cf8 "insert error"\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \}\
+\
+\
+\
+    \cf5 static\cf4  \cf5 func\cf4  open(path: \cf9 String\cf4 ) \cf5 throws\cf4  -> \cf6 SQLiteDatabase\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf5 var\cf4  db: \cf9 OpaquePointer\cf4 ?
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf5 if\cf4  \cf7 sqlite3_open\cf4 (path, &db) == \cf9 SQLITE_OK\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf5 return\cf4  \cf6 SQLiteDatabase\cf4 (dbPointer: db)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf5 else\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf5 defer\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf5 if\cf4  db != \cf5 nil\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \cf7 sqlite3_close\cf4 (db)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf5 if\cf4  \cf5 let\cf4  errorPointer = \cf7 sqlite3_errmsg\cf4 (db) \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf5 let\cf4  message = \cf9 String\cf4 .\cf9 init\cf4 (cString: errorPointer)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf5 throw\cf4  \cf6 SQliteError\cf4 .\cf10 OpenDatabase\cf4 (message: message)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \} \cf5 else\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf5 throw\cf4  \cf6 SQliteError\cf4 .\cf10 OpenDatabase\cf4 (message: \cf8 "No error message provided from sqlite"\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4     \}\
+\
+\
+        \cf7 print\cf4 (\cf8 "**********************************************"\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf5 let\cf4  filePath = \cf9 FileManager\cf4 .\cf9 default\cf4 .\cf7 urls\cf4 (for: .\cf7 applicationSupportDirectory\cf4 , in: .\cf9 userDomainMask\cf4 )[\cf11 0\cf4 ].\cf9 path
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf7 print\cf4 (filePath)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf5 do\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf5 let\cf4  items = \cf5 try\cf4  \cf9 FileManager\cf4 .\cf9 default\cf4 .\cf7 contentsOfDirectory\cf4 (atPath: filePath)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf5 for\cf4  item \cf5 in\cf4  items \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf7 print\cf4 (item)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \} \cf5 catch\cf4  \cf5 let\cf4  error \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf7 print\cf4 (error.\cf9 localizedDescription\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf7 print\cf4 (\cf8 "**********************************************"\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf5 let\cf4  filePath2 = \cf9 FileManager\cf4 .\cf9 default\cf4 .\cf7 urls\cf4 (for: .\cf7 documentDirectory\cf4 , in: .\cf9 userDomainMask\cf4 )[\cf11 0\cf4 ].\cf9 path
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf7 print\cf4 (filePath2)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf5 do\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf5 let\cf4  items = \cf5 try\cf4  \cf9 FileManager\cf4 .\cf9 default\cf4 .\cf7 contentsOfDirectory\cf4 (atPath: filePath2)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf5 for\cf4  item \cf5 in\cf4  items \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf7 print\cf4 (item)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \} \cf5 catch\cf4  \cf5 let\cf4  error \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf7 print\cf4 (error.\cf9 localizedDescription\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf7 print\cf4 (\cf8 "**********************************************"\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf5 let\cf4  filePath3 = \cf9 FileManager\cf4 .\cf9 default\cf4 .\cf7 urls\cf4 (for: .\cf7 libraryDirectory\cf4 , in: .\cf9 userDomainMask\cf4 )[\cf11 0\cf4 ].\cf9 path
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf7 print\cf4 (filePath3)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf5 do\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf5 let\cf4  items = \cf5 try\cf4  \cf9 FileManager\cf4 .\cf9 default\cf4 .\cf7 contentsOfDirectory\cf4 (atPath: filePath3)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf5 for\cf4  item \cf5 in\cf4  items \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf7 print\cf4 (item)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \} \cf5 catch\cf4  \cf5 let\cf4  error \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf7 print\cf4 (error.\cf9 localizedDescription\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \}\
+\
+\
+DB\
+\cf5 var\cf4  dateFormatter: \cf9 DateFormatter\cf4  = \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf5 let\cf4  _formatter = \cf9 DateFormatter\cf4 ()
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         _formatter.\cf9 dateFormat\cf4  = \cf8 "yyyy/MM/dd HH:mm:ss"
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         _formatter.\cf9 locale\cf4  = \cf9 Locale\cf4 (identifier: \cf8 "ja_JP"\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         _formatter.\cf9 timeZone\cf4  = \cf9 TimeZone\cf4 (identifier: \cf8 "Asia/Tokyo"\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf5 return\cf4  _formatter
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4     \}()\
+\
+\pard\tx543\pardeftab543\pardirnatural\partightenfactor0
+
+\f2 \cf4 \'83\'74\'83\'40\'83\'43\'83\'8b
+\f0 \
+    \cf5 var\cf4  dateFormatter: \cf9 DateFormatter\cf4  = \{
+\f1\fs24 \cf0 \
+\pard\tx543\pardeftab543\pardirnatural\partightenfactor0
+
+\f0\fs22 \cf4         \cf5 let\cf4  _formatter = \cf9 DateFormatter\cf4 ()
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         _formatter.\cf9 dateFormat\cf4  = \cf8 "yyyyMMddHHmmss"
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         _formatter.\cf9 locale\cf4  = \cf9 Locale\cf4 (identifier: \cf8 "ja_JP"\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         _formatter.\cf9 timeZone\cf4  = \cf9 TimeZone\cf4 (identifier: \cf8 "Asia/Tokyo"\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf5 return\cf4  _formatter
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4     \}()\
+\
+\
+\
+\
+\
+\
+\cf5 switch\cf4  \cf9 UIDevice\cf4 .\cf9 current\cf4 .\cf9 orientation\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf5 case\cf4  .\cf7 portrait\cf4 :
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf2 //
+\f2 \'83\'66\'83\'6f\'83\'43\'83\'58\'83\'8d\'83\'62\'83\'4e\'82\'b3\'82\'ea\'82\'c4\'82\'a2\'82\'c8\'82\'a2
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf5 if\cf4  \cf6 parentShouldAutoRotate\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf5 if\cf4  \cf9 frame\cf4 .\cf9 origin\cf4 .\cf9 x\cf4  < \cf11 0\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \cf9 frame\cf4 .\cf9 origin\cf4 .\cf9 x\cf4  = \cf11 0
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf5 if\cf4  \cf9 frame\cf4 .\cf9 origin\cf4 .\cf9 y\cf4  < \cf11 0\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \cf9 frame\cf4 .\cf9 origin\cf4 .\cf9 y\cf4  = \cf11 0
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf5 if\cf4  \cf9 frame\cf4 .\cf9 maxX\cf4  > \cf9 UIScreen\cf4 .\cf9 main\cf4 .\cf9 bounds\cf4 .\cf9 width\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \cf9 frame\cf4 .\cf9 origin\cf4 .\cf9 x\cf4  = \cf9 UIScreen\cf4 .\cf9 main\cf4 .\cf9 bounds\cf4 .\cf9 width\cf4  - \cf9 frame\cf4 .\cf9 width
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf5 if\cf4  \cf9 frame\cf4 .\cf9 maxY\cf4  > \cf9 UIScreen\cf4 .\cf9 main\cf4 .\cf9 bounds\cf4 .\cf9 height\cf4  - \cf6 buttonsViewSize\cf4 .\cf9 height\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \cf9 frame\cf4 .\cf9 origin\cf4 .\cf9 y\cf4  = \cf9 UIScreen\cf4 .\cf9 main\cf4 .\cf9 bounds\cf4 .\cf9 height\cf4  - (\cf6 buttonsViewSize\cf4 .\cf9 height\cf4  + \cf9 frame\cf4 .\cf9 height\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf2 //
+\f2 \'83\'8d\'83\'62\'83\'4e\'82\'b3\'82\'ea\'82\'c4\'82\'a2\'82\'e9
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf2 //landscape
+\f2 \'8e\'9e\'82\'cc\'94\'bb\'92\'e8\'82\'f0\'93\'4b\'97\'70
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \} \cf5 else\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf5 if\cf4  \cf9 frame\cf4 .\cf9 origin\cf4 .\cf9 x\cf4  < \cf11 0\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \cf9 frame\cf4 .\cf9 origin\cf4 .\cf9 x\cf4  = \cf11 0
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf5 if\cf4  \cf9 frame\cf4 .\cf9 origin\cf4 .\cf9 y\cf4  < \cf11 0\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \cf9 frame\cf4 .\cf9 origin\cf4 .\cf9 y\cf4  = \cf11 0
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf5 if\cf4  \cf9 frame\cf4 .\cf9 maxX\cf4  > \cf9 UIScreen\cf4 .\cf9 main\cf4 .\cf9 bounds\cf4 .\cf9 width\cf4  - \cf6 buttonsViewSize\cf4 .\cf9 height\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \cf9 frame\cf4 .\cf9 origin\cf4 .\cf9 x\cf4  = \cf9 UIScreen\cf4 .\cf9 main\cf4 .\cf9 bounds\cf4 .\cf9 width\cf4  - (\cf6 buttonsViewSize\cf4 .\cf9 height\cf4  + \cf9 frame\cf4 .\cf9 width\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf5 if\cf4  \cf9 frame\cf4 .\cf9 maxY\cf4  > \cf9 UIScreen\cf4 .\cf9 main\cf4 .\cf9 bounds\cf4 .\cf9 height\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \cf9 frame\cf4 .\cf9 origin\cf4 .\cf9 y\cf4  = \cf9 UIScreen\cf4 .\cf9 main\cf4 .\cf9 bounds\cf4 .\cf9 height\cf4  - \cf9 frame\cf4 .\cf9 height
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf5 case\cf4  .\cf7 landscapeLeft\cf4 , .\cf7 landscapeRight\cf4 :
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf2 //
+\f2 \'83\'66\'83\'6f\'83\'43\'83\'58\'83\'8d\'83\'62\'83\'4e\'82\'b3\'82\'ea\'82\'c4\'82\'a2\'82\'c8\'82\'a2
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf5 if\cf4  \cf6 parentShouldAutoRotate\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf5 if\cf4  \cf9 frame\cf4 .\cf9 origin\cf4 .\cf9 x\cf4  < \cf11 0\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \cf9 frame\cf4 .\cf9 origin\cf4 .\cf9 x\cf4  = \cf11 0
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf5 if\cf4  \cf9 frame\cf4 .\cf9 origin\cf4 .\cf9 y\cf4  < \cf11 0\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \cf9 frame\cf4 .\cf9 origin\cf4 .\cf9 y\cf4  = \cf11 0
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf5 if\cf4  \cf9 frame\cf4 .\cf9 maxX\cf4  > \cf9 UIScreen\cf4 .\cf9 main\cf4 .\cf9 bounds\cf4 .\cf9 width\cf4  - \cf6 buttonsViewSize\cf4 .\cf9 height\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \cf9 frame\cf4 .\cf9 origin\cf4 .\cf9 x\cf4  = \cf9 UIScreen\cf4 .\cf9 main\cf4 .\cf9 bounds\cf4 .\cf9 width\cf4  - (\cf6 buttonsViewSize\cf4 .\cf9 height\cf4  + \cf9 frame\cf4 .\cf9 width\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf5 if\cf4  \cf9 frame\cf4 .\cf9 maxY\cf4  > \cf9 UIScreen\cf4 .\cf9 main\cf4 .\cf9 bounds\cf4 .\cf9 height\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \cf9 frame\cf4 .\cf9 origin\cf4 .\cf9 y\cf4  = \cf9 UIScreen\cf4 .\cf9 main\cf4 .\cf9 bounds\cf4 .\cf9 height\cf4  - \cf9 frame\cf4 .\cf9 height
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf2 //
+\f2 \'83\'66\'83\'6f\'83\'43\'83\'58\'83\'8d\'83\'62\'83\'4e\'82\'b3\'82\'ea\'82\'c4\'82\'a2\'82\'e9
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf2 //.portrait
+\f2 \'8e\'9e\'82\'cc\'94\'bb\'92\'e8\'82\'f0\'93\'4b\'97\'70
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \} \cf5 else\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf5 if\cf4  \cf9 frame\cf4 .\cf9 origin\cf4 .\cf9 x\cf4  < \cf11 0\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \cf9 frame\cf4 .\cf9 origin\cf4 .\cf9 x\cf4  = \cf11 0
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf5 if\cf4  \cf9 frame\cf4 .\cf9 origin\cf4 .\cf9 y\cf4  < \cf11 0\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \cf9 frame\cf4 .\cf9 origin\cf4 .\cf9 y\cf4  = \cf11 0
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf5 if\cf4  \cf9 frame\cf4 .\cf9 maxX\cf4  > \cf9 UIScreen\cf4 .\cf9 main\cf4 .\cf9 bounds\cf4 .\cf9 width\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \cf9 frame\cf4 .\cf9 origin\cf4 .\cf9 x\cf4  = \cf9 UIScreen\cf4 .\cf9 main\cf4 .\cf9 bounds\cf4 .\cf9 width\cf4  - \cf9 frame\cf4 .\cf9 width
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf5 if\cf4  \cf9 frame\cf4 .\cf9 maxY\cf4  > \cf9 UIScreen\cf4 .\cf9 main\cf4 .\cf9 bounds\cf4 .\cf9 height\cf4  - \cf6 buttonsViewSize\cf4 .\cf9 height\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \cf9 frame\cf4 .\cf9 origin\cf4 .\cf9 y\cf4  = \cf9 UIScreen\cf4 .\cf9 main\cf4 .\cf9 bounds\cf4 .\cf9 height\cf4  - (\cf6 buttonsViewSize\cf4 .\cf9 height\cf4  + \cf9 frame\cf4 .\cf9 height\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf5 default\cf4 :
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf5 break
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \}\
+\
+\
+\
+\
+\
+\
+\
+\cf5 switch\cf4  \cf9 UIDevice\cf4 .\cf9 current\cf4 .\cf9 orientation\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf5 case\cf4  .\cf7 portrait\cf4 , .\cf7 faceDown\cf4 , .\cf7 faceUp\cf4 , .\cf7 portraitUpsideDown\cf4 :
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf2 //
+\f2 \'83\'66\'83\'6f\'83\'43\'83\'58\'83\'8d\'83\'62\'83\'4e\'82\'b3\'82\'ea\'82\'c4\'82\'a2\'82\'c8\'82\'a2
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf5 if\cf4  \cf6 parentShouldAutoRotate\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf5 if\cf4  \cf9 frame\cf4 .\cf9 origin\cf4 .\cf9 x\cf4  < \cf11 0\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \cf9 frame\cf4 .\cf9 origin\cf4 .\cf9 x\cf4  = \cf11 0
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf5 if\cf4  \cf9 frame\cf4 .\cf9 origin\cf4 .\cf9 y\cf4  < \cf11 0\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \cf9 frame\cf4 .\cf9 origin\cf4 .\cf9 y\cf4  = \cf11 0
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf5 if\cf4  \cf9 frame\cf4 .\cf9 maxX\cf4  > \cf9 UIScreen\cf4 .\cf9 main\cf4 .\cf9 bounds\cf4 .\cf9 width\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \cf9 frame\cf4 .\cf9 origin\cf4 .\cf9 x\cf4  = \cf9 UIScreen\cf4 .\cf9 main\cf4 .\cf9 bounds\cf4 .\cf9 width\cf4  - \cf9 frame\cf4 .\cf9 width
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf5 if\cf4  \cf9 frame\cf4 .\cf9 maxY\cf4  > \cf9 UIScreen\cf4 .\cf9 main\cf4 .\cf9 bounds\cf4 .\cf9 height\cf4  - \cf6 buttonsViewSize\cf4 .\cf9 height\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \cf9 frame\cf4 .\cf9 origin\cf4 .\cf9 y\cf4  = \cf9 UIScreen\cf4 .\cf9 main\cf4 .\cf9 bounds\cf4 .\cf9 height\cf4  - (\cf6 buttonsViewSize\cf4 .\cf9 height\cf4  + \cf9 frame\cf4 .\cf9 height\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf2 //
+\f2 \'83\'8d\'83\'62\'83\'4e\'82\'b3\'82\'ea\'82\'c4\'82\'a2\'82\'e9
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf2 //landscape
+\f2 \'8e\'9e\'82\'cc\'94\'bb\'92\'e8\'82\'f0\'93\'4b\'97\'70
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \} \cf5 else\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf5 if\cf4  \cf9 frame\cf4 .\cf9 origin\cf4 .\cf9 x\cf4  < \cf11 0\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \cf9 frame\cf4 .\cf9 origin\cf4 .\cf9 x\cf4  = \cf11 0
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf5 if\cf4  \cf9 frame\cf4 .\cf9 origin\cf4 .\cf9 y\cf4  < \cf11 0\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \cf9 frame\cf4 .\cf9 origin\cf4 .\cf9 y\cf4  = \cf11 0
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf2 //
+\f2 \'82\'b1\'82\'b1\'82\'c5\'8d\'95\'94\'c2\'82\'aa\'89\'a1\'82\'a9\'8f\'63\'82\'a9\'94\'bb\'92\'e8\'82\'b5\'82\'c8\'82\'af\'82\'ea\'82\'ce\'82\'c8\'82\'e7\'82\'c8\'82\'a2
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf5 switch\cf4  \cf6 orientation\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf5 case\cf4  .\cf10 portrait\cf4 :
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                         \cf2 //
+\f2 \'8d\'95\'94\'c2\'82\'aa
+\f0 portrait
+\f2 \'82\'c8\'82\'e7\'82\'ce
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                         \cf5 if\cf4  \cf9 frame\cf4 .\cf9 maxX\cf4  > \cf9 UIScreen\cf4 .\cf9 main\cf4 .\cf9 bounds\cf4 .\cf9 width\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                             \cf9 frame\cf4 .\cf9 origin\cf4 .\cf9 x\cf4  = \cf9 UIScreen\cf4 .\cf9 main\cf4 .\cf9 bounds\cf4 .\cf9 width\cf4  - \cf9 frame\cf4 .\cf9 width
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                         \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                         \cf5 if\cf4  \cf9 frame\cf4 .\cf9 maxY\cf4  > \cf9 UIScreen\cf4 .\cf9 main\cf4 .\cf9 bounds\cf4 .\cf9 height\cf4  - \cf6 buttonsViewSize\cf4 .\cf9 height\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                             \cf9 frame\cf4 .\cf9 origin\cf4 .\cf9 y\cf4  = \cf9 UIScreen\cf4 .\cf9 main\cf4 .\cf9 bounds\cf4 .\cf9 height\cf4  - (\cf6 buttonsViewSize\cf4 .\cf9 height\cf4  + \cf9 frame\cf4 .\cf9 height\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                         \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf5 case\cf4  .\cf10 landscape\cf4 :
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \cf2 //
+\f2 \'8d\'95\'94\'c2\'82\'aa
+\f0 landscape
+\f2 \'82\'c8\'82\'e7\'82\'ce
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \cf5 if\cf4  \cf9 frame\cf4 .\cf9 maxX\cf4  > \cf9 UIScreen\cf4 .\cf9 main\cf4 .\cf9 bounds\cf4 .\cf9 width\cf4  - \cf6 buttonsViewSize\cf4 .\cf9 height\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                         \cf9 frame\cf4 .\cf9 origin\cf4 .\cf9 x\cf4  = \cf9 UIScreen\cf4 .\cf9 main\cf4 .\cf9 bounds\cf4 .\cf9 width\cf4  - (\cf6 buttonsViewSize\cf4 .\cf9 height\cf4  + \cf9 frame\cf4 .\cf9 width\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \cf5 if\cf4  \cf9 frame\cf4 .\cf9 maxY\cf4  > \cf9 UIScreen\cf4 .\cf9 main\cf4 .\cf9 bounds\cf4 .\cf9 height\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                         \cf9 frame\cf4 .\cf9 origin\cf4 .\cf9 y\cf4  = \cf9 UIScreen\cf4 .\cf9 main\cf4 .\cf9 bounds\cf4 .\cf9 height\cf4  - \cf9 frame\cf4 .\cf9 height
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf5 case\cf4  .\cf7 landscapeLeft\cf4 , .\cf7 landscapeRight\cf4 :
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf2 //
+\f2 \'83\'66\'83\'6f\'83\'43\'83\'58\'83\'8d\'83\'62\'83\'4e\'82\'b3\'82\'ea\'82\'c4\'82\'a2\'82\'c8\'82\'a2
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf5 if\cf4  \cf6 parentShouldAutoRotate\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf5 if\cf4  \cf9 frame\cf4 .\cf9 origin\cf4 .\cf9 x\cf4  < \cf11 0\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \cf9 frame\cf4 .\cf9 origin\cf4 .\cf9 x\cf4  = \cf11 0
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf5 if\cf4  \cf9 frame\cf4 .\cf9 origin\cf4 .\cf9 y\cf4  < \cf11 0\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \cf9 frame\cf4 .\cf9 origin\cf4 .\cf9 y\cf4  = \cf11 0
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf5 if\cf4  \cf9 frame\cf4 .\cf9 maxX\cf4  > \cf9 UIScreen\cf4 .\cf9 main\cf4 .\cf9 bounds\cf4 .\cf9 width\cf4  - \cf6 buttonsViewSize\cf4 .\cf9 height\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \cf9 frame\cf4 .\cf9 origin\cf4 .\cf9 x\cf4  = \cf9 UIScreen\cf4 .\cf9 main\cf4 .\cf9 bounds\cf4 .\cf9 width\cf4  - (\cf6 buttonsViewSize\cf4 .\cf9 height\cf4  + \cf9 frame\cf4 .\cf9 width\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf5 if\cf4  \cf9 frame\cf4 .\cf9 maxY\cf4  > \cf9 UIScreen\cf4 .\cf9 main\cf4 .\cf9 bounds\cf4 .\cf9 height\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \cf9 frame\cf4 .\cf9 origin\cf4 .\cf9 y\cf4  = \cf9 UIScreen\cf4 .\cf9 main\cf4 .\cf9 bounds\cf4 .\cf9 height\cf4  - \cf9 frame\cf4 .\cf9 height
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf2 //
+\f2 \'83\'66\'83\'6f\'83\'43\'83\'58\'83\'8d\'83\'62\'83\'4e\'82\'b3\'82\'ea\'82\'c4\'82\'a2\'82\'e9
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf2 //.portrait
+\f2 \'8e\'9e\'82\'cc\'94\'bb\'92\'e8\'82\'f0\'93\'4b\'97\'70
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \} \cf5 else\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf5 if\cf4  \cf9 frame\cf4 .\cf9 origin\cf4 .\cf9 x\cf4  < \cf11 0\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \cf9 frame\cf4 .\cf9 origin\cf4 .\cf9 x\cf4  = \cf11 0
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf5 if\cf4  \cf9 frame\cf4 .\cf9 origin\cf4 .\cf9 y\cf4  < \cf11 0\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \cf9 frame\cf4 .\cf9 origin\cf4 .\cf9 y\cf4  = \cf11 0
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf2 //
+\f2 \'82\'b1\'82\'b1\'82\'c5\'8d\'95\'94\'c2\'82\'aa\'89\'a1\'82\'a9\'8f\'63\'82\'a9\'82\'c5\'94\'bb\'92\'e8\'82\'b5\'82\'c8\'82\'af\'82\'ea\'82\'ce\'82\'c8\'82\'e7\'82\'c8\'82\'a2
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf5 switch\cf4  \cf6 orientation\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf5 case\cf4  .\cf10 portrait\cf4 :
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \cf5 if\cf4  \cf9 frame\cf4 .\cf9 maxX\cf4  > \cf9 UIScreen\cf4 .\cf9 main\cf4 .\cf9 bounds\cf4 .\cf9 width\cf4  - \cf6 buttonsViewSize\cf4 .\cf9 height\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                         \cf9 frame\cf4 .\cf9 origin\cf4 .\cf9 x\cf4  = \cf9 UIScreen\cf4 .\cf9 main\cf4 .\cf9 bounds\cf4 .\cf9 width\cf4  - (\cf6 buttonsViewSize\cf4 .\cf9 height\cf4  + \cf9 frame\cf4 .\cf9 width\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \cf5 if\cf4  \cf9 frame\cf4 .\cf9 maxY\cf4  > \cf9 UIScreen\cf4 .\cf9 main\cf4 .\cf9 bounds\cf4 .\cf9 height\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                         \cf9 frame\cf4 .\cf9 origin\cf4 .\cf9 y\cf4  = \cf9 UIScreen\cf4 .\cf9 main\cf4 .\cf9 bounds\cf4 .\cf9 height\cf4  - \cf9 frame\cf4 .\cf9 height
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf5 case\cf4  .\cf10 landscape\cf4 :
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \cf5 if\cf4  \cf9 frame\cf4 .\cf9 maxX\cf4  > \cf9 UIScreen\cf4 .\cf9 main\cf4 .\cf9 bounds\cf4 .\cf9 width\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                         \cf9 frame\cf4 .\cf9 origin\cf4 .\cf9 x\cf4  = \cf9 UIScreen\cf4 .\cf9 main\cf4 .\cf9 bounds\cf4 .\cf9 width\cf4  - \cf9 frame\cf4 .\cf9 width
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \cf5 if\cf4  \cf9 frame\cf4 .\cf9 maxY\cf4  > \cf9 UIScreen\cf4 .\cf9 main\cf4 .\cf9 bounds\cf4 .\cf9 height\cf4  - \cf6 buttonsViewSize\cf4 .\cf9 height\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                         \cf9 frame\cf4 .\cf9 origin\cf4 .\cf9 y\cf4  = \cf9 UIScreen\cf4 .\cf9 main\cf4 .\cf9 bounds\cf4 .\cf9 height\cf4  - (\cf6 buttonsViewSize\cf4 .\cf9 height\cf4  + \cf9 frame\cf4 .\cf9 height\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf5 default\cf4 :
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf5 break
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \}\
+\
+\
+\
+\
+\cf7 print\cf4 (\cf8 "**********************************************"\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf5 let\cf4  filePath = \cf9 FileManager\cf4 .\cf9 default\cf4 .\cf7 urls\cf4 (for: .\cf7 libraryDirectory\cf4 , in: .\cf9 userDomainMask\cf4 )[\cf11 0\cf4 ].\cf9 path
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf7 print\cf4 (filePath)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf5 do\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf5 let\cf4  items = \cf5 try\cf4  \cf9 FileManager\cf4 .\cf9 default\cf4 .\cf7 contentsOfDirectory\cf4 (atPath: filePath + \cf8 "/LocalDatabase"\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf5 for\cf4  item \cf5 in\cf4  items \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf7 print\cf4 (item)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \} \cf5 catch\cf4  \cf5 let\cf4  error \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf7 print\cf4 (error.\cf9 localizedDescription\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf5 do\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf5 let\cf4  \ulth d\ulnone b = \cf5 try\cf4  \cf6 SQLiteDatabase\cf4 .\cf10 open2\cf4 (path: filePath + \cf8 "/LocalDatabase/photoapp.db"\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \} \cf5 catch\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf7 print\cf4 (\cf8 "no"\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \}\
+\
+\
+\
+\
+        \cf5 if\cf4  \cf5 let\cf4  id = \cf6 bID\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf5 let\cf4  a = \cf6 ConstructionDao\cf4 (boardID: id)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf5 let\cf4  b = a.\cf10 getConstructionID\cf4 ()
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf7 print\cf4 (\cf8 "**********query result************"\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf7 print\cf4 (\ulth b)
+\f1\fs24 \cf0 \ulnone \
+
+\f0\fs22 \cf4         \}\
+\
+\
+\cf5 let\cf4  \ulth c\ulnone onstructions = \cf8 "/constructions"
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf5 let\cf4  \ulth c\ulnone onstructionID = \cf8 "/\cf4 \\\cf8 (\cf5 self\cf4 .\cf6 constructionID\cf8 )"
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf5 let\cf4  \ulth p\ulnone hotos = \cf8 "/photos"\cf4 \
+\cf5 let\cf4  \ulth f\ulnone ilePath = documentPath + constructions + constructionID + photos\
+\pard\tx543\pardeftab543\pardirnatural\partightenfactor0
+\cf2 //photos
+\f2 \'88\'c8\'89\'ba\'82\'cc\'83\'74\'83\'40\'83\'43\'83\'8b\'82\'f0\'91\'53\'8e\'e6\'93\'be
+\f1\fs24 \cf0 \
+\pard\tx543\pardeftab543\pardirnatural\partightenfactor0
+
+\f0\fs22 \cf4         \cf7 print\cf4 (\cf8 "**********************************************"\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf5 do\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf5 let\cf4  items = \cf5 try\cf4  \cf9 FileManager\cf4 .\cf9 default\cf4 .\cf7 contentsOfDirectory\cf4 (atPath: filePath)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf5 for\cf4  item \cf5 in\cf4  items \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf7 print\cf4 (item)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \} \cf5 catch\cf4  \cf5 let\cf4  error \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf7 print\cf4 (error.\cf9 localizedDescription\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \}\
+\
+\
+\
+\cf5 protocol\cf4  ReturnButtonDelegate \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4     \cf5 func\cf4  returnHTML5()
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4 \}\
+\
+\cf5 let\cf4  returnButton: \cf9 UIButton
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4     \cf5 var\cf4  delegate: \cf6 \ulth \ulc6 R\ulnone eturnButtonDelegate\cf4 ?\
+\
+        \cf2 //
+\f2 \'96\'df\'82\'e9\'83\'7b\'83\'5e\'83\'93
+\f1\fs24 \cf0 \
+\pard\tx543\pardeftab543\pardirnatural\partightenfactor0
+
+\f0\fs22 \cf4         \cf6 \ulth r\ulnone eturnButton\cf4  = \cf9 UIButton\cf4 ()
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf6 \ulth r\ulnone eturnButton\cf4 .\cf9 frame\cf4  = \cf9 CGRect\cf4 (x: \cf11 0\cf4 , y: \cf11 20\cf4 , width: \cf11 50\cf4 , height: \cf11 50\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf6 \ulth r\ulnone eturnButton\cf4 .\cf9 backgroundColor\cf4  = \cf9 UIColor\cf4 .\cf9 white\
+\
+\
+\pard\tx543\pardeftab543\pardirnatural\partightenfactor0
+\cf5 self\cf4 .\cf7 addSubview\cf4 (\cf6 \ulth r\ulnone eturnButton\cf4 )
+\f1\fs24 \cf0 \
+\pard\tx543\pardeftab543\pardirnatural\partightenfactor0
+
+\f0\fs22 \cf4         \cf6 \ulth r\ulnone eturnButton\cf4 .\cf7 addTarget\cf4 (\cf5 self\cf4 , action: \cf5 #selector\cf4 (tappedReturnButton(\cf5 _\cf4 :)), for: .\cf9 touchUpInside\cf4 )\
+\
+    \cf5 @objc\cf4  \cf5 func\cf4  tappedReturnButton(\cf5 _\cf4  sender: \cf9 UIButton\cf4 ) \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf5 \ulth \ulc5 s\ulnone elf\cf4 .\cf6 delegate\cf4 ?.\cf10 returnHTML5\cf4 ()
+\f1\fs24 \cf0 \
+\pard\tx543\pardeftab543\pardirnatural\partightenfactor0
+
+\f0\fs22 \cf4     \}\
+\
+\cf5 extension\cf4  \cf6 CameraViewController\cf4 : \cf6 ReturnButtonDelegate\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4     \cf5 func\cf4  returnHTML5() \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf5 self\cf4 .\cf7 dismiss\cf4 (animated: \cf5 true\cf4 , completion: \cf5 nil\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4     \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4 \}\
+\
+        \cf6 \ulth \ulc6 c\ulnone ameraPreview\cf4 .\cf6 delegate\cf4  = \cf5 self\
+\
+\
+\pard\tx543\pardeftab543\pardirnatural\partightenfactor0
+\cf4     \cf2 //
+\f2 \'8d\'87\'90\'ac
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4     \cf5 func\cf4  photoSynthesis(photo: \cf9 UIImage\cf4 , board: \cf9 UIImage\cf4 ) -> \cf9 UIImage\cf4 ? \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf7 UIGraphicsBeginImageContextWithOptions\cf4 (\cf9 CGSize\cf4 (width: \cf5 self\cf4 .\cf9 view\cf4 .\cf9 frame\cf4 .\cf9 width\cf4 , height: \cf5 self\cf4 .\cf9 view\cf4 .\cf9 frame\cf4 .\cf9 height\cf4 ),
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                                                \cf5 false\cf4 ,
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                                                \cf11 2.0\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf2 //
+\f2 \'8e\'ca\'90\'5e\'82\'cc
+\f0 width
+\f2 \'82\'c6
+\f0 height
+\f2 \'82\'aa\'82\'b1\'82\'ea\'82\'c5\'82\'a2\'82\'a2\'82\'a9\'82\'cd\'82\'ed\'82\'a9\'82\'e7\'82\'c8\'82\'a2
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         photo.\cf7 draw\cf4 (in: \cf9 CGRect\cf4 (x: \cf11 0\cf4 , y: \cf11 0\cf4 , width: \cf5 self\cf4 .\cf9 view\cf4 .\cf9 frame\cf4 .\cf9 width\cf4 , height: \cf5 self\cf4 .\cf9 view\cf4 .\cf9 frame\cf4 .\cf9 height\cf4 ))
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         board.\cf7 draw\cf4 (in: \cf9 CGRect\cf4 (x: \cf6 boardImgRect\cf4 .\cf9 origin\cf4 .\cf9 x\cf4 , y: \cf6 boardImgRect\cf4 .\cf9 origin\cf4 .\cf9 y\cf4 , width: \cf6 boardImgRect\cf4 .\cf9 width\cf4 , height: \cf6 boardImgRect\cf4 .\cf9 height\cf4 ))
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf2 //board.draw(in: CGRect(x: boardImgRect.origin.x, y: boardImgRect.origin.y, width: boardImgRect.width, height: boardImgRect.height), blendMode: .normal, alpha: boardAlpha)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf5 let\cf4  newImage = \cf7 UIGraphicsGetImageFromCurrentImageContext\cf4 ()
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf7 UIGraphicsEndImageContext\cf4 ()
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf5 return\cf4  newImage
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4     \}\
+\
+\
+\
+\
+\
+\
+\cf2 //        let l = CALayer()
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //        l.contents = image?.cgImage
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //        let l2 = CALayer()
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //        if let bi = self.boardImage \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            l2.contents = bi.cgImage
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //        \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //        l.frame = self.view.frame
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //        l2.frame = self.boardImgRect
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //        l2.opacity = Float(self.boardAlpha)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //        l.addSublayer(l2)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //        self.view.layer.addSublayer(l)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf2 //selfDismiss()\
+\
+\
+//        //
+\f2 \'8d\'95\'94\'c2\'82\'aa\'82\'a0\'82\'e9\'8f\'ea\'8d\'87
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf5 if\cf4  \cf5 let\cf4  \ulth \ulc4 b\ulnone img = \cf5 self\cf4 .\cf6 boardImage\cf4  \{
+\f1\fs24 \cf0 \
+\pard\tx543\pardeftab543\pardirnatural\partightenfactor0
+
+\f0\fs22 \cf4             \cf2 //
+\f2 \'8d\'95\'94\'c2\'82\'cc\'95\'5c\'8e\'a6\'81\'45\'94\'f1\'95\'5c\'8e\'a6\'8f\'f3\'91\'d4
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf5 guard\cf4  \cf6 boardHidden\cf4  \cf5 else\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf5 if\cf4  \cf5 let\cf4  \ulth i\ulnone mg = image \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \cf2 //
+\f2 \'8d\'95\'94\'c2\'82\'cc
+\f0 alpha
+\f2 \'82\'f0\'93\'4b\'97\'70
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \cf2 //let newBoardImg = bimg.makeAlphaImage(alpha: boardAlpha, size: boardImgRect.size)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \cf2 //
+\f2 \'8d\'87\'90\'ac
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \cf2 //let newImg = self.photoSynthesis(photo: img, board: bimg)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \cf2 //
+\f2 \'83\'8a\'83\'54\'83\'43\'83\'59
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \cf2 //self.resizeImg = newImg?.resized(currentPreset: self.preset)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf5 return
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \}
+\f1\fs24 \cf0 \
+\pard\tx543\pardeftab543\pardirnatural\partightenfactor0
+
+\f0\fs22 \cf2 //            //
+\f2 \'8d\'95\'94\'c2\'82\'aa\'94\'f1\'95\'5c\'8e\'a6\'8f\'f3\'91\'d4\'82\'c8\'82\'e7\'82\'ce\'81\'41\'8e\'42\'89\'65\'8e\'ca\'90\'5e\'82\'cc\'82\'dd\'82\'c5\'8f\'88\'97\'9d
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            //
+\f2 \'83\'8a\'83\'54\'83\'43\'83\'59
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            self.resizeImg = image?.resized(currentPreset: self.preset)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //        //
+\f2 \'8d\'95\'94\'c2\'82\'aa\'82\'c8\'82\'a2\'8e\'9e
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //        \} else \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            //
+\f2 \'83\'8a\'83\'54\'83\'43\'83\'59
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            self.resizeImg = image?.resized(currentPreset: self.preset)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //        \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //        let imageView = UIImageView(image: self.resizeImg)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //        self.photoFrame(imgView: imageView)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //        self.view.addSubview(imageView)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //        DispatchQueue.global(qos: .background).async \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            //
+\f2 \'95\'db\'91\'b6
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            //self.photoSave(image: self.resizeImg)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            DispatchQueue.main.async \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //                //
+\f2 \'95\'60\'89\'e6
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //                let imageView = UIImageView(image: self.resizeImg)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //                self.photoFrame(imgView: imageView)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //                self.view.addSubview(imageView)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //                self.selfDismiss()
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //        \}\
+\
+\
+\pard\tx543\pardeftab543\pardirnatural\partightenfactor0
+\cf4 imgView.\cf9 frame\cf4  = \cf9 CGRect\cf4 (x: \cf11 0\cf4 , y: \cf11 0\cf4 , width: \cf5 self\cf4 .\cf9 view\cf4 .\cf9 frame\cf4 .\cf9 width\cf4 ,height: \cf5 self\cf4 .\cf9 view\cf4 .\cf9 frame\cf4 .\cf9 width\cf4  * (\cf11 16\cf4 /\cf11 9\cf4 ))\
+\
+\
+            \cf5 let\cf4  angle = \cf11 -(90\cf4  * \cf9 CGFloat\cf4 .\cf9 pi\cf4  / \cf11 180\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf5 let\cf4  transRotate = \cf9 CGAffineTransform\cf4 (rotationAngle: \cf9 CGFloat\cf4 (angle))
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             newImgView.\cf9 transform\cf4  = transRotate
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             newImgView.\cf9 frame\cf4 .\cf9 origin\cf4 .\cf9 x\cf4  = \cf11 0
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             newImgView.\cf9 frame\cf4 .\cf9 origin\cf4 .\cf9 y\cf4  = \cf11 0
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf7 print\cf4 (newImgView.\cf9 frame\cf4 .\cf9 origin\cf4 .\cf9 x\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf7 print\cf4 (newImgView.\cf9 frame\cf4 .\cf9 origin\cf4 .\cf9 y\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf7 print\cf4 (newImgView.\cf9 frame\cf4 .\cf9 width\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf7 print\cf4 (newImgView.\cf9 frame\cf4 .\cf9 height\cf4 )\
+\
+\
+\pard\tx543\pardeftab543\pardirnatural\partightenfactor0
+\cf2 //    //
+\f2 \'8d\'87\'90\'ac\'82\'c6\'83\'8a\'83\'54\'83\'43\'83\'59
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //    func imageContext(photo: UIImageView, board: UIImage) -> UIImageView \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //        let boardView = UIImageView(image: board)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //        boardView.frame = boardImgRect
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //        boardView.alpha = boardAlpha
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //        photo.addSubview(boardView)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //        UIGraphicsBeginImageContextWithOptions(CGSize(width: self.view.frame.width, height: self.view.frame.height),
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //                                               false,
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //                                               2.0)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //        if let context = UIGraphicsGetCurrentContext() \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            photo.layer.render(in: context)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            let newImg = UIGraphicsGetImageFromCurrentImageContext()
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            UIGraphicsEndImageContext()
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            resizeImg = newImg?.resized(currentPreset: preset)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            let newImgView = UIImageView(image: resizeImg)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            return newImgView
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //        \} else \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            return photo
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //        \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //    \}\
+\
+\
+\pard\tx543\pardeftab543\pardirnatural\partightenfactor0
+\cf4     \cf2 //
+\f2 \'8d\'87\'90\'ac\'91\'4f\'82\'cc\'95\'60\'89\'e6\'8e\'9e\'82\'cc\'83\'74\'83\'8c\'81\'5b\'83\'80\'82\'f0\'8c\'88\'92\'e8
+\f1\fs24 \cf0 \
+\pard\tx543\pardeftab543\pardirnatural\partightenfactor0
+
+\f0\fs22 \cf2 //    func photoFrame() -> CGRect \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //        switch self.orientation \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //        case .portrait:
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            //return CGRect(x: 0, y: 0, width: self.view.frame.width,height: self.view.frame.width * (16/9))
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            return CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //        case .landscapeRight, .landscapeLeft:
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            return CGRect(x: 0, y: 0, width: self.view.frame.height, height: self.view.frame.width)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //        default:
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            if UIScreen.main.bounds.width > UIScreen.main.bounds.height \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //                return CGRect(x: 0, y: 0, width: self.view.frame.height, height: self.view.frame.width)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            \} else \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //                return CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //        \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //    \}
+\f1\fs24 \cf0 \
+\pard\tx543\pardeftab543\pardirnatural\partightenfactor0
+
+\f0\fs22 \cf4     
+\f1\fs24 \cf0 \
+\pard\tx543\pardeftab543\pardirnatural\partightenfactor0
+
+\f0\fs22 \cf2 //    //
+\f2 \'83\'76\'83\'8c\'83\'72\'83\'85\'81\'5b\'95\'5c\'8e\'a6\'8e\'9e\'82\'cc\'83\'8c\'83\'43\'83\'41\'83\'45\'83\'67\'8c\'88\'92\'e8
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //    func previewLayout(imgView: UIImageView) \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //        switch self.orientation \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //        case .portrait:
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            imgView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //        case .landscapeRight:
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            let angle = -(90 * CGFloat.pi / 180)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            let transRotate = CGAffineTransform(rotationAngle: CGFloat(angle))
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            imgView.transform = transRotate
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            imgView.frame.origin.x = 0
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            imgView.frame.origin.y = 0
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            break
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //        case .landscapeLeft:
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            let angle = 90 * CGFloat.pi / 180
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            let transRotate = CGAffineTransform(rotationAngle: CGFloat(angle));
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            imgView.transform = transRotate
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            imgView.frame.origin.x = 0
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            imgView.frame.origin.y = 0
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //        default:
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            if UIScreen.main.bounds.width > UIScreen.main.bounds.height \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            \} else \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //                imgView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //        \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //    \}\
+\
+\
+\pard\tx543\pardeftab543\pardirnatural\partightenfactor0
+\cf4             \cf2 //resizeImg = newImg?.resized(currentPreset: preset)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf2 //
+\f2 \'95\'60\'89\'e6\'94\'cd\'88\'cd\'82\'cc\'8c\'88\'92\'e8
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf2 //imgView.frame = photoFrame()
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf2 //imgView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         
+\f1\fs24 \cf0 \
+\pard\tx543\pardeftab543\pardirnatural\partightenfactor0
+
+\f0\fs22 \cf2 //        //
+\f2 \'8d\'95\'94\'c2\'82\'aa\'82\'a0\'82\'e9\'8f\'ea\'8d\'87
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //        if let boardImg = self.boardImage \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            guard boardHidden else \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //                //
+\f2 \'8d\'87\'90\'ac\'81\'41\'83\'8a\'83\'54\'83\'43\'83\'59
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //                let newImageView = imageContext(photo: imgView, board: boardImg)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //                //newImageView.frame = photoFrame()
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //                //
+\f2 \'83\'76\'83\'8c\'83\'72\'83\'85\'81\'5b\'82\'cc\'83\'8c\'83\'43\'83\'41\'83\'45\'83\'67\'8c\'88\'92\'e8
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //                previewLayout(imgView: newImageView)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //                self.view.addSubview(newImageView)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //                selfDismiss()
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //                return
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            //
+\f2 \'83\'8a\'83\'54\'83\'43\'83\'59
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            self.resizeImg = image?.resized(currentPreset: self.preset)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            let imageView = UIImageView(image: self.resizeImg)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            previewLayout(imgView: imageView)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            self.view.addSubview(imageView)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //        \} else \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            //
+\f2 \'83\'8a\'83\'54\'83\'43\'83\'59
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            self.resizeImg = image?.resized(currentPreset: self.preset)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            let imageView = UIImageView(image: self.resizeImg)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            previewLayout(imgView: imageView)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            self.view.addSubview(imageView)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //        \}\
+\
+\
+\
+		//landscape
+\f1\fs24 \cf0 \
+\pard\tx543\pardeftab543\pardirnatural\partightenfactor0
+
+\f0\fs22 \cf4         imgView.\cf9 frame\cf4  = \cf9 CGRect\cf4 (x: \cf11 0\cf4 , y: \cf11 0\cf4 , width: \cf9 view\cf4 .\cf9 frame\cf4 .\cf9 height\cf4 , height: \cf9 view\cf4 .\cf9 frame\cf4 .\cf9 width\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf2 //portrait
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf2 //imgView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf2 //landscape
+\f2 \'82\'cc\'82\'dd
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf5 let\cf4  angle = \cf11 -(90\cf4  * \cf9 CGFloat\cf4 .\cf9 pi\cf4  / \cf11 180\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf5 let\cf4  transRotate = \cf9 CGAffineTransform\cf4 (rotationAngle: \cf9 CGFloat\cf4 (angle))
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         imgView.\cf9 transform\cf4  = transRotate
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         imgView.\cf9 frame\cf4 .\cf9 origin\cf4 .\cf9 x\cf4  = \cf11 0
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         imgView.\cf9 frame\cf4 .\cf9 origin\cf4 .\cf9 y\cf4  = \cf11 0
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf2 //
+\f2 \'8d\'95\'94\'c2
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf5 let\cf4  imgView2 = \cf9 UIImageView\cf4 (image: \cf6 boardImage\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         imgView2.\cf9 frame\cf4  = \cf6 boardImgRect
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         imgView2.\cf9 alpha\cf4  = \cf6 boardAlpha
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf5 self\cf4 .\cf9 view\cf4 .\cf7 addSubview\cf4 (imgView)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf5 self\cf4 .\cf9 view\cf4 .\cf7 addSubview\cf4 (imgView2)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf2 //portarait,landscape
+\f2 \'8b\'a4\'92\'ca
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf7 UIGraphicsBeginImageContextWithOptions\cf4 (\cf9 CGSize\cf4 (width: \cf5 self\cf4 .\cf9 view\cf4 .\cf9 frame\cf4 .\cf9 width\cf4 , height: \cf5 self\cf4 .\cf9 view\cf4 .\cf9 frame\cf4 .\cf9 height\cf4 ), \cf5 false\cf4 , \cf11 2.0\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf5 if\cf4  \cf5 let\cf4  context = \cf7 UIGraphicsGetCurrentContext\cf4 () \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf5 self\cf4 .\cf9 view\cf4 .\cf9 layer\cf4 .\cf7 render\cf4 (in: context)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf5 let\cf4  newImg = \cf7 UIGraphicsGetImageFromCurrentImageContext\cf4 ()
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf7 UIGraphicsEndImageContext\cf4 ()
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf6 resizeImg\cf4  = newImg?.\cf10 resized\cf4 (currentPreset: \cf6 preset\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf2 //let newImgView = UIImageView(image: newImg)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf5 let\cf4  newImgView = \cf9 UIImageView\cf4 (image: \cf6 resizeImg\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf2 //
+\f2 \'97\'76\'8a\'6d\'94\'46
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             newImgView.\cf9 frame\cf4  = \cf9 CGRect\cf4 (x: \cf11 0\cf4 , y: \cf11 0\cf4 , width: \cf9 view\cf4 .\cf9 frame\cf4 .\cf9 width\cf4 , height: \cf9 view\cf4 .\cf9 frame\cf4 .\cf9 height\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf5 self\cf4 .\cf9 view\cf4 .\cf7 addSubview\cf4 (newImgView)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf7 print\cf4 (\cf8 "view add"\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \}\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\cf7 print\cf4 (\ulth n\ulnone ewImg?.\cf9 size\cf4 .\cf9 width\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf7 print\cf4 (\ulth n\ulnone ewImg?.\cf9 size\cf4 .\cf9 height\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf5 let\cf4  data = \cf7 UIImageJPEGRepresentation\cf4 (\cf5 self\cf4 .\cf6 resizeImg\cf4 , \cf11 1.0\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf2 //exif
+\f2 \'96\'84\'82\'df\'8d\'9e\'82\'dd
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf2 //if let cii = CIImage(image: self.resizeImg) \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf5 if\cf4  \cf5 let\cf4  cii = \cf9 CIImage\cf4 (data: data!) \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \cf5 let\cf4  metaData = \cf9 NSMutableDictionary\cf4 ()
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \cf5 let\cf4  newData = \cf9 NSMutableData\cf4 ()
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \cf7 print\cf4 (\cf5 self\cf4 .\cf6 resizeImg\cf4 .\cf9 size\cf4 .\cf9 width\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \cf7 print\cf4 (\cf5 self\cf4 .\cf6 resizeImg\cf4 .\cf9 size\cf4 .\cf9 height\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \cf2 //width
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \cf2 //metaData.setObject(1280, forKey: kCGImagePropertyPixelWidth as! NSCopying)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     metaData.\cf7 setObject\cf4 (\cf11 960\cf4 , forKey: \cf9 kCGImagePropertyPixelWidth\cf4  \cf5 as\cf4 ! \cf9 NSCopying\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \cf2 //height
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \cf2 //metaData.setObject(960, forKey: kCGImagePropertyPixelHeight as! NSCopying)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     metaData.\cf7 setObject\cf4 (\cf11 1280\cf4 , forKey: \cf9 kCGImagePropertyPixelHeight\cf4  \cf5 as\cf4 ! \cf9 NSCopying\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \cf5 let\cf4  context = \cf9 CIContext\cf4 (options: \cf5 nil\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \cf5 let\cf4  cgImage = context.\cf7 createCGImage\cf4 (cii, from: cii.\cf9 extent\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \cf2 //
+\f2 \'8f\'91\'82\'ab\'8d\'9e\'82\'dd
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \cf5 let\cf4  dest: \cf9 CGImageDestination\cf4  = \cf7 CGImageDestinationCreateWithData\cf4 (newData, \cf9 kUTTypeJPEG\cf4 , \cf11 1\cf4 , \cf5 nil\cf4 )!
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \cf7 CGImageDestinationAddImage\cf4 (dest, cgImage!, metaData)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \cf7 CGImageDestinationFinalize\cf4 (dest)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \cf2 //
+\f2 \'95\'cf\'8a\'b7
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \cf5 let\cf4  encode = newData.\cf7 base64EncodedString\cf4 (options: .\cf9 lineLength64Characters\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \cf5 \ulth \ulc5 s\ulnone elf\cf4 .\cf6 decode\cf4  = \cf9 Data\cf4 (base64Encoded: encode, options: .\cf9 ignoreUnknownCharacters\cf4 )
+\f1\fs24 \cf0 \
+\pard\tx543\pardeftab543\pardirnatural\partightenfactor0
+
+\f0\fs22 \cf4                 
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf5 let\cf4  nei = \cf9 UIImage\cf4 (data: \cf5 \ulth s\ulnone elf\cf4 .\cf6 decode\cf4 )\
+\
+\
+\
+\
+\cf5 if\cf4  \cf6 device\cf4 .\cf9 hasTorch\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf5 do\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf5 try\cf4  \cf6 device\cf4 .\cf7 lockForConfiguration\cf4 ()
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf5 switch\cf4  \cf6 currentFlashMode\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf2 //
+\f2 \'83\'7b\'83\'5e\'83\'93\'82\'aa
+\f0 auto
+\f2 \'82\'cc\'8e\'9e\'81\'41\'89\'9f\'89\'ba\'8c\'e3
+\f0 off
+\f2 \'82\'c9\'82\'c8\'82\'e9
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf5 case\cf4  .\cf10 AUTO\cf4 :
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \cf6 currentFlashMode\cf4  = .\cf10 OFF
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \cf6 device\cf4 .\cf9 \ulth \ulc9 f\ulnone lashMode\cf4  = \cf9 AVCaptureDevice\cf4 .\cf9 FlashMode\cf4 .\cf7 off
+\f1\fs24 \cf0 \
+\pard\tx543\pardeftab543\pardirnatural\partightenfactor0
+
+\f0\fs22 \cf4                     \cf2 //device.torchMode = AVCaptureDevice.TorchMode.off
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \cf7 print\cf4 (\cf8 "current mode off"\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf2 //
+\f2 \'83\'7b\'83\'5e\'83\'93\'82\'aa
+\f0 off
+\f2 \'82\'cc\'8e\'9e\'81\'41\'89\'9f\'89\'ba\'8c\'e3
+\f0 on
+\f2 \'82\'c9\'82\'c8\'82\'e9
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf5 case\cf4  .\cf10 OFF\cf4 :
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \cf6 currentFlashMode\cf4  = .\cf10 ON
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \cf2 //device.torchMode = AVCaptureDevice.TorchMode.on
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \cf7 print\cf4 (\cf8 "current mode on"\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf2 //
+\f2 \'83\'7b\'83\'5e\'83\'93\'82\'aa
+\f0 on
+\f2 \'82\'cc\'8e\'9e\'81\'41\'89\'9f\'89\'ba\'8c\'e3
+\f0 auto
+\f2 \'82\'c9\'82\'c8\'82\'e9
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf5 case\cf4  .\cf10 ON\cf4 :
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \cf6 currentFlashMode\cf4  = .\cf10 AUTO
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \cf2 //device.torchMode = AVCaptureDevice.TorchMode.auto
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \cf7 print\cf4 (\cf8 "current mode auto"\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf6 device\cf4 .\cf7 unlockForConfiguration\cf4 ()
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf6 buttonsView\cf4 .\cf10 flushModeChangeImageChange\cf4 (currentStatus: \cf6 currentFlashMode\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \} \cf5 catch\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf7 print\cf4 (\cf8 "don't cahnge flush mode"\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \} \cf5 else\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf7 print\cf4 (\cf8 "torch is not available"\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \}\
+\
+\
+        \cf2 //
+\f2 \'8d\'95\'94\'c2\'82\'aa\'82\'c8\'82\'a2\'8f\'ea\'8d\'87
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf5 guard\cf4  \cf6 boardImage\cf4  != \cf5 nil\cf4  || !\cf6 boardHidden\cf4  \cf5 else\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf7 print\cf4 (\cf8 "no board"\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf6 resizeImg\cf4  = image?.\cf10 resized\cf4 (currentPreset: \cf6 preset\cf4 , orientation: \cf5 self\cf4 .\cf6 orientation\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf9 DispatchQueue\cf4 .\cf7 global\cf4 ().\cf7 async\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf2 //
+\f2 \'95\'db\'91\'b6
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf5 self\cf4 .\cf10 photoSave\cf4 (image: \cf5 self\cf4 .\cf6 resizeImg\cf4 , id: \cf5 self\cf4 .\cf6 boardID\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf7 print\cf4 (\cf8 "save photo"\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf9 DispatchQueue\cf4 .\cf9 main\cf4 .\cf7 async\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \cf5 let\cf4  photoView = \cf9 UIImageView\cf4 (image: \cf5 self\cf4 .\cf6 resizeImg\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     photoView.\cf9 frame\cf4  = \cf5 self\cf4 .\cf10 photoFrame\cf4 (orientaion: \cf5 self\cf4 .\cf6 orientation\cf4 , view: \cf5 self\cf4 .\cf9 view\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \cf5 if\cf4  \cf5 self\cf4 .\cf6 orientation\cf4  == .\cf7 landscapeRight\cf4  || \cf5 self\cf4 .\cf6 orientation\cf4  == .\cf7 landscapeLeft\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                         \cf5 self\cf4 .\cf10 imageTranslate\cf4 (imgView: photoView, orientaion: \cf5 self\cf4 .\cf6 orientation\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                         \cf7 print\cf4 (\cf8 "imageTranslate because orientaion is landscape"\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \cf5 self\cf4 .\cf9 view\cf4 .\cf7 addSubview\cf4 (photoView)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \cf5 self\cf4 .\cf10 selfDismiss\cf4 ()
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf5 return
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf2 //
+\f2 \'8d\'95\'94\'c2\'82\'aa\'82\'a0\'82\'e9\'82\'aa\'94\'f1\'95\'5c\'8e\'a6\'82\'be\'82\'c1\'82\'bd\'8f\'ea\'8d\'87
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf5 guard\cf4  !\cf6 boardHidden\cf4  \cf5 else\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf7 print\cf4 (\cf8 "board hidden"\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf6 resizeImg\cf4  = image?.\cf10 resized\cf4 (currentPreset: \cf6 preset\cf4 , orientation: \cf5 self\cf4 .\cf6 orientation\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf9 DispatchQueue\cf4 .\cf7 global\cf4 ().\cf7 async\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf2 //
+\f2 \'95\'db\'91\'b6
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf5 self\cf4 .\cf10 photoSave\cf4 (image: \cf5 self\cf4 .\cf6 resizeImg\cf4 , id: \cf5 self\cf4 .\cf6 boardID\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf7 print\cf4 (\cf8 "save photo"\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf9 DispatchQueue\cf4 .\cf9 main\cf4 .\cf7 async\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \cf5 let\cf4  photoView = \cf9 UIImageView\cf4 (image: \cf5 self\cf4 .\cf6 resizeImg\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     photoView.\cf9 frame\cf4  = \cf5 self\cf4 .\cf10 photoFrame\cf4 (orientaion: \cf5 self\cf4 .\cf6 orientation\cf4 , view: \cf5 self\cf4 .\cf9 view\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \cf5 if\cf4  \cf5 self\cf4 .\cf6 orientation\cf4  == .\cf7 landscapeRight\cf4  || \cf5 self\cf4 .\cf6 orientation\cf4  == .\cf7 landscapeLeft\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                         \cf5 self\cf4 .\cf10 imageTranslate\cf4 (imgView: photoView, orientaion: \cf5 self\cf4 .\cf6 orientation\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                         \cf7 print\cf4 (\cf8 "imageTranslate because orientaion is landscape"\cf4 )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \cf5 self\cf4 .\cf9 view\cf4 .\cf7 addSubview\cf4 (photoView)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     \cf5 self\cf4 .\cf10 selfDismiss\cf4 ()
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf5 return
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \}\
+\
+\
+\
+    \cf5 const\cf4  \cf6 XMP_StringPtr\cf4   kXMP_NS_SDK_EDIT = \cf8 "http://ns.adobe/meta/sdk/Edit/"\cf4 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4     \cf5 const\cf4  \cf6 XMP_StringPtr\cf4   kXMP_NS_SDK_USERS = \cf8 "http://ns.adobe/meta/sdk/User/"\cf4 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4     
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4     \cf5 const\cf4  \cf6 XMP_StringPtr\cf4   \ulth \ulc4 k\ulnone XMP_NS_SDK_PHOTO = \cf8 "http://dcpadv.org/schema/3.0/photoinfo"\cf4 ;
+\f1\fs24 \cf0 \
+\pard\tx543\pardeftab543\pardirnatural\partightenfactor0
+
+\f0\fs22 \cf4     \cf5 const\cf4  \cf6 XMP_StringPtr\cf4   \ulth k\ulnone XMP_NS_SDK_MEASUREMENT = \cf8 "http://dcpadv.org/schema/3.0/measurement"\cf4 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4     \cf5 const\cf4  \cf6 XMP_StringPtr\cf4   \ulth k\ulnone XMP_NS_SDK_ITEM = \cf8 "http://dcpadv.org/schema/3.0/measurementitem"\cf4 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4     
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4     \cf9 std\cf4 ::\cf9 string\cf4  filename = [path \cf7 UTF8String\cf4 ];
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4     
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4     \cf5 if\cf4 (!\cf6 SXMPMeta\cf4 ::\cf10 Initialize\cf4 ())
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4     \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf9 std\cf4 ::\cf9 cout\cf4  << \cf8 "Could not initialize Toolkit!"\cf4 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4     \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4     \cf5 else
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4     \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf5 try
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf6 XMP_OptionBits\cf4  opts = \cf10 kXMPFiles_OpenForUpdate\cf4  | \cf10 kXMPFiles_OpenUseSmartHandler\cf4 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf5 bool\cf4  ok;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf6 SXMPFiles\cf4  myFile;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf9 std\cf4 ::\cf9 string\cf4  status = \cf8 ""\cf4 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf2 // First we try and open the file
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             ok = myFile.\cf10 OpenFile\cf4 (filename, \cf10 kXMP_UnknownFile\cf4 , opts);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf5 if\cf4 ( ! ok )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 status += \cf8 "No smart handler available for "\cf4  + filename + \cf8 "\\n"\cf4 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 status += \cf8 "Trying packet scanning.\\n"\cf4 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf2 // Now try using packet scanning
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 opts = \cf10 kXMPFiles_OpenForUpdate\cf4  | \cf10 kXMPFiles_OpenUsePacketScanning\cf4 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 ok = myFile.\cf10 OpenFile\cf4 (filename, \cf10 kXMP_UnknownFile\cf4 , opts);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf2 // Register the namespaces
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf9 std\cf4 ::\cf9 string\cf4  actualPrefix;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf6 SXMPMeta\cf4 ::\cf10 RegisterNamespace\cf4 (kXMP_NS_SDK_EDIT, \cf8 "xsdkEdit"\cf4 , &actualPrefix);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf6 SXMPMeta\cf4 ::\cf10 RegisterNamespace\cf4 (kXMP_NS_SDK_USERS, \cf8 "xsdkUser"\cf4 ,&actualPrefix);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf6 SXMPMeta\cf4  meta;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             myFile.\cf10 GetXMP\cf4 (&meta);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf2 // Adds a user of the document
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf2 // 1.  Add a new item onto the DocumentUsers array -
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf2 // 2.  Compose a path to the last element of DocumentUsers array
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf2 // 3.  Add a value for the User field of the UserDetails structure
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf2 // 4.  Add a qualifier to the User field.  Compose the path and set the value
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf2 // 5.  Add a value for the DUID field of the UserDetails structure
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf2 // 6.  Add a Contact property for the ContactDetails field of the UserDetails structure
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf2 // 7.  Compose a path to the ContactDetails field of the UserDetails structure.
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf2 // 8.  Create the fields of the ContactDetails structure and provide values
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf2 // Create/Append the top level DocumentUsers array.  If the array exists a new item will be added
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             meta.\cf10 AppendArrayItem\cf4 (kXMP_NS_SDK_EDIT, \cf8 "DocumentUsers"\cf4 , \cf10 kXMP_PropValueIsArray\cf4 , \cf11 0\cf4 , \cf10 kXMP_PropValueIsStruct\cf4 );
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf4             
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf2 // Compose a path to the last item in the DocumentUsers array, this will point to a UserDetails structure
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf9 std\cf4 ::\cf9 string\cf4  userItemPath;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf6 SXMPUtils\cf4 ::\cf10 ComposeArrayItemPath\cf4 (kXMP_NS_SDK_EDIT, \cf8 "DocumentUsers"\cf4 , \cf12 kXMP_ArrayLastItem\cf4 , &userItemPath);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf2 // We now have a path to the structure, so we can set the field values
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             meta.\cf10 SetStructField\cf4 (kXMP_NS_SDK_EDIT, userItemPath.\cf7 c_str\cf4 (), kXMP_NS_SDK_USERS, \cf8 "User"\cf4 , \cf8 "John Smith"\cf4 , \cf11 0\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf2 // Add a qualifier to the User field, first compose the path to the field and then add the qualifier
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf9 std\cf4 ::\cf9 string\cf4  userFieldPath;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf6 SXMPUtils\cf4 ::\cf10 ComposeStructFieldPath\cf4 (kXMP_NS_SDK_EDIT, userItemPath.\cf7 c_str\cf4 (), kXMP_NS_SDK_USERS, \cf8 "User"\cf4 , &userFieldPath);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             meta.\cf10 SetQualifier\cf4 (kXMP_NS_SDK_EDIT, userFieldPath.\cf7 c_str\cf4 (), kXMP_NS_SDK_USERS, \cf8 "Role"\cf4 , \cf8 "Dev Engineer"\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf2 // Compose a path to the DUID and set field value
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf9 std\cf4 ::\cf9 string\cf4  duidPath;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf6 SXMPUtils\cf4 ::\cf10 ComposeStructFieldPath\cf4 (kXMP_NS_SDK_EDIT, userItemPath.\cf7 c_str\cf4 (), kXMP_NS_SDK_USERS, \cf8 "DUID"\cf4 , &duidPath);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             meta.\cf10 SetProperty_Int\cf4 (kXMP_NS_SDK_EDIT, duidPath.\cf7 c_str\cf4 (), \cf11 2\cf4 , \cf11 0\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf2 // Add the ContactDetails field, this field is a Contact structure
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             meta.\cf10 SetStructField\cf4 (kXMP_NS_SDK_EDIT, userItemPath.\cf7 c_str\cf4 (), kXMP_NS_SDK_USERS, \cf8 "ContactDetails"\cf4 , \cf11 0\cf4 , \cf10 kXMP_PropValueIsStruct\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf2 // Compose a path to the field that has the ContactDetails structure
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf9 std\cf4 ::\cf9 string\cf4  contactStructPath;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf6 SXMPUtils\cf4 ::\cf10 ComposeStructFieldPath\cf4 (kXMP_NS_SDK_EDIT, userItemPath.\cf7 c_str\cf4 (), kXMP_NS_SDK_USERS, \cf8 "ContactDetails"\cf4 , &contactStructPath);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf2 // Now add the fields - all empty initially
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             meta.\cf10 SetStructField\cf4 (kXMP_NS_SDK_EDIT, contactStructPath.\cf7 c_str\cf4 (), kXMP_NS_SDK_USERS, \cf8 "Email"\cf4 , \cf11 0\cf4 , \cf10 kXMP_PropArrayIsAlternate\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             meta.\cf10 SetStructField\cf4 (kXMP_NS_SDK_EDIT, contactStructPath.\cf7 c_str\cf4 (), kXMP_NS_SDK_USERS, \cf8 "Telephone"\cf4 , \cf11 0\cf4 , \cf10 kXMP_PropValueIsArray\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             meta.\cf10 SetStructField\cf4 (kXMP_NS_SDK_EDIT, contactStructPath.\cf7 c_str\cf4 (), kXMP_NS_SDK_USERS, \cf8 "BaseLocation"\cf4 , \cf8 ""\cf4 , \cf11 0\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf2 // Add some values for the fields
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf2 // Email: Get the path to the field named 'Email' in the ContactDetails structure and use it to append items
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf9 std\cf4 ::\cf9 string\cf4  path;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf6 SXMPUtils\cf4 ::\cf10 ComposeStructFieldPath\cf4 (kXMP_NS_SDK_EDIT, contactStructPath.\cf7 c_str\cf4 (), kXMP_NS_SDK_USERS, \cf8 "Email"\cf4 , &path);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             meta.\cf10 AppendArrayItem\cf4 (kXMP_NS_SDK_EDIT, path.\cf7 c_str\cf4 (), \cf11 0\cf4 , \cf8 "js@adobe.meta.com"\cf4 , \cf11 0\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             meta.\cf10 AppendArrayItem\cf4 (kXMP_NS_SDK_EDIT, path.\cf7 c_str\cf4 (), \cf11 0\cf4 , \cf8 "js@adobe.home.com"\cf4 , \cf11 0\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf2 // Telephone
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf6 SXMPUtils\cf4 ::\cf10 ComposeStructFieldPath\cf4 (kXMP_NS_SDK_EDIT, contactStructPath.\cf7 c_str\cf4 (), kXMP_NS_SDK_USERS, \cf8 "Telephone"\cf4 , &path);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             meta.\cf10 AppendArrayItem\cf4 (kXMP_NS_SDK_EDIT, path.\cf7 c_str\cf4 (), \cf11 0\cf4 , \cf8 "89112"\cf4 , \cf11 0\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             meta.\cf10 AppendArrayItem\cf4 (kXMP_NS_SDK_EDIT, path.\cf7 c_str\cf4 (), \cf11 0\cf4 , \cf8 "84432"\cf4 , \cf11 0\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf2 // BaseLocation
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf6 SXMPUtils\cf4 ::\cf10 ComposeStructFieldPath\cf4 (kXMP_NS_SDK_EDIT, contactStructPath.\cf7 c_str\cf4 (), kXMP_NS_SDK_USERS, \cf8 "BaseLocation"\cf4 , &path);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             meta.\cf10 SetProperty\cf4 (kXMP_NS_SDK_EDIT, path.\cf7 c_str\cf4 (), \cf8 "London"\cf4 , \cf11 0\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf2 // Add a user edit
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf2 // 1.  Add an item (a structure) to the DocumentEdit array
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf2 // 2.  Compose a path to the last item in the DocumentEdit array
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf2 // 3.  Add fields and values to the EditDetails structure
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf2 // Create the array
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             meta.\cf10 AppendArrayItem\cf4 (kXMP_NS_SDK_EDIT, \cf8 "DocumentEdit"\cf4 , \cf10 kXMP_PropArrayIsOrdered\cf4 , \cf11 0\cf4 , \cf10 kXMP_PropValueIsStruct\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf2 // Compose a path to the last item of the DocumentEdit array, this gives the path to the structure
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf9 std\cf4 ::\cf9 string\cf4  lastItemPath;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf6 SXMPUtils\cf4 ::\cf10 ComposeArrayItemPath\cf4 (kXMP_NS_SDK_EDIT, \cf8 "DocumentEdit"\cf4 , \cf12 kXMP_ArrayLastItem\cf4 , &lastItemPath);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf2 // Add the Date field
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf6 SXMPUtils\cf4 ::\cf10 ComposeStructFieldPath\cf4 (kXMP_NS_SDK_EDIT, lastItemPath.\cf7 c_str\cf4 (), kXMP_NS_SDK_EDIT, \cf8 "EditDate"\cf4 , &path);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf6 XMP_DateTime\cf4  dt;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf6 SXMPUtils\cf4 ::\cf10 CurrentDateTime\cf4 (&dt);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             meta.\cf10 SetProperty_Date\cf4 (kXMP_NS_SDK_EDIT, path.\cf7 c_str\cf4 (), dt, \cf11 0\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf2 // Add the DUID field
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf6 SXMPUtils\cf4 ::\cf10 ComposeStructFieldPath\cf4 (kXMP_NS_SDK_EDIT, lastItemPath.\cf7 c_str\cf4 (), kXMP_NS_SDK_EDIT, \cf8 "DUID"\cf4 , &path);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             meta.\cf10 SetProperty_Int\cf4 (kXMP_NS_SDK_EDIT, path.\cf7 c_str\cf4 (), \cf11 2\cf4 , \cf11 0\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf2 // Add the EditComments field
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf6 SXMPUtils\cf4 ::\cf10 ComposeStructFieldPath\cf4 (kXMP_NS_SDK_EDIT, lastItemPath.\cf7 c_str\cf4 (), kXMP_NS_SDK_EDIT, \cf8 "EditComments"\cf4 , &path);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             meta.\cf10 SetLocalizedText\cf4 (kXMP_NS_SDK_EDIT, path.\cf7 c_str\cf4 (), \cf8 "en"\cf4 , \cf8 "en-US"\cf4 , \cf8 "Document created."\cf4 , \cf11 0\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf2 // Add the EditTool field
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             meta.\cf10 SetStructField\cf4 (kXMP_NS_SDK_EDIT, lastItemPath.\cf7 c_str\cf4 (), kXMP_NS_SDK_EDIT, \cf8 "EditTool"\cf4 , \cf8 "FrameXML"\cf4 , \cf11 0\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf2 // Write the RDF to a file
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf9 std\cf4 ::\cf9 cout\cf4  << \cf8 "writing RDF to file CS_RDF.txt"\cf4  << \cf9 std\cf4 ::\cf7 endl\cf4 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf9 std\cf4 ::\cf9 string\cf4  metaBuffer;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             meta.\cf10 SerializeToBuffer\cf4 (&metaBuffer);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf2 //writeRDFToFile(&metaBuffer, "CS_RDF.txt");
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf9 std\cf4 ::\cf9 ofstream\cf4  outfile;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf9 std\cf4 ::\cf9 string\cf4  rdfwritefile = filename+\cf8 "CS_RDF.txt"\cf4 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             outfile.\cf7 open\cf4 (rdfwritefile.\cf7 c_str\cf4 (), \cf9 std\cf4 ::\cf9 ios\cf4 ::\cf5 out\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             outfile << *&metaBuffer;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             outfile.\cf7 close\cf4 ();
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf9 std\cf4 ::\cf9 cout\cf4  << \cf8 "dumping XMP object to file XMPDump.txt"\cf4  << \cf9 std\cf4 ::\cf7 endl\cf4 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf9 std\cf4 ::\cf9 ofstream\cf4  dumpFile;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             rdfwritefile = filename+\cf8 "XMPDump.txt"\cf4 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             dumpFile.\cf7 open\cf4 (rdfwritefile.\cf7 c_str\cf4 (), \cf9 std\cf4 ::\cf9 ios\cf4 ::\cf5 out\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             meta.\cf10 DumpObject\cf4 (\cf10 XMPFileDump\cf4 , &dumpFile);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             dumpFile.\cf7 close\cf4 ();
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf2 // Dump the namespaces to a file
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf9 std\cf4 ::\cf9 cout\cf4  << \cf8 "dumping namespaces to file NameDump.txt"\cf4  << \cf9 std\cf4 ::\cf7 endl\cf4 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             rdfwritefile = filename+\cf8 "NameDump.txt"\cf4 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             dumpFile.\cf7 open\cf4 (rdfwritefile.\cf7 c_str\cf4 (), \cf9 std\cf4 ::\cf9 ios\cf4 ::\cf5 out\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             meta.\cf10 DumpNamespaces\cf4 (\cf10 XMPFileDump\cf4 , &dumpFile);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             dumpFile.\cf7 close\cf4 ();
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf5 if\cf4  (myFile.\cf10 CanPutXMP\cf4 (meta)) \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 myFile.\cf10 PutXMP\cf4 (meta);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \} \cf5 else\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 *error = [\cf9 NSError\cf4  \cf7 errorWithDomain\cf4 :\cf12 XMPUtilsDomain\cf4  \cf7 code\cf4 :-\cf11 2\cf4  \cf7 userInfo\cf4 :\cf11 @\{\cf8 @"message"\cf4 : \cf8 @"write error!"\cf11 \}\cf4 ];
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             myFile.\cf10 CloseFile\cf4 ();
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf5 catch\cf4 (\cf6 XMP_Error\cf4  & e)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf9 std\cf4 ::\cf9 cout\cf4  << \cf8 "ERROR: "\cf4  << e.\cf10 GetErrMsg\cf4 () << \cf9 std\cf4 ::\cf7 endl\cf4 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             *error = [\cf9 NSError\cf4  \cf7 errorWithDomain\cf4 :\cf12 XMPUtilsDomain\cf4  \cf7 code\cf4 :-\cf11 3\cf4  \cf7 userInfo\cf4 :\cf11 @\{\cf8 @"message"\cf4 : \cf8 @"write other error"\cf11 \}\cf4 ];
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4     \}\
+\
+\
+\
+\
+\cf5 else\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf5 try\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf6 XMP_OptionBits\cf4  opts = \cf10 kXMPFiles_OpenForUpdate\cf4  | \cf10 kXMPFiles_OpenUseSmartHandler\cf4 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf5 bool\cf4  ok;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf6 SXMPFiles\cf4  myFile;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf9 std\cf4 ::\cf9 string\cf4  status = \cf8 ""\cf4 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf2 // First we try and open the file
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             ok = myFile.\cf10 OpenFile\cf4 (filename, \cf10 kXMP_UnknownFile\cf4 , opts);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf5 if\cf4  (!ok)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 status += \cf8 "No smart handler available for "\cf4  + filename + \cf8 "\\n"\cf4 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 status += \cf8 "Trying packet scanning.\\n"\cf4 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf2 // Now try using packet scanning
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 opts = \cf10 kXMPFiles_OpenForUpdate\cf4  | \cf10 kXMPFiles_OpenUsePacketScanning\cf4 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 ok = myFile.\cf10 OpenFile\cf4 (filename, \cf10 kXMP_UnknownFile\cf4 , opts);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \}
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf4             \cf5 if\cf4  (ok) \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf9 std\cf4 ::\cf9 string\cf4  actualPrefix;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf6 SXMPMeta\cf4 ::\cf10 RegisterNamespace\cf4 (kXMP_NS_SDK_PHOTO, \cf8 "photo"\cf4 , &actualPrefix);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf6 SXMPMeta\cf4 ::\cf10 RegisterNamespace\cf4 (kXMP_NS_SDK_MEASUREMENT, \cf8 "measurement"\cf4 , &actualPrefix);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf6 SXMPMeta\cf4 ::\cf10 RegisterNamespace\cf4 (kXMP_NS_SDK_ITEM, \cf8 "item"\cf4 , &actualPrefix);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf6 SXMPMeta\cf4  meta;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 myFile.\cf10 GetXMP\cf4 (&meta);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf9 std\cf4 ::\cf9 string\cf4  structPath;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 meta.\cf10 SetStructField\cf4 (\cf12 kXMP_NS_RDF\cf4 , structPath.\cf7 c_str\cf4 (), kXMP_NS_SDK_PHOTO, \cf8 "ConstructionName"\cf4 , \cf8 ""\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf9 std\cf4 ::\cf9 string\cf4  path;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf6 SXMPUtils\cf4 ::\cf10 ComposeStructFieldPath\cf4 (\cf12 kXMP_NS_RDF\cf4 , structPath.\cf7 c_str\cf4 (), kXMP_NS_SDK_PHOTO, \cf8 "ConstructionName"\cf4 , &path);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf9 std\cf4 ::\cf9 string\cf4  constructionamePath;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 meta.\cf10 SetProperty\cf4 (kXMP_NS_SDK_PHOTO, constructionamePath.\cf7 c_str\cf4 (), \cf8 "
+\f2 \'83\'54\'83\'93\'83\'76\'83\'8b\'8d\'48\'8e\'96
+\f0 "\cf4 , \cf11 0\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf2 // Write the RDF to a file
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf9 std\cf4 ::\cf9 cout\cf4  << \cf8 "writing RDF to file CS_RDF.txt"\cf4  << \cf9 std\cf4 ::\cf7 endl\cf4 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf9 std\cf4 ::\cf9 string\cf4  metaBuffer;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 meta.\cf10 SerializeToBuffer\cf4 (&metaBuffer);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf2 //writeRDFToFile(&metaBuffer, "CS_RDF.txt");
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf9 std\cf4 ::\cf9 ofstream\cf4  outfile;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf9 std\cf4 ::\cf9 string\cf4  rdfwritefile = filename+\cf8 "CS_RDF.txt"\cf4 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 outfile.\cf7 open\cf4 (rdfwritefile.\cf7 c_str\cf4 (), \cf9 std\cf4 ::\cf9 ios\cf4 ::\cf5 out\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 outfile << *&metaBuffer;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 outfile.\cf7 close\cf4 ();
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf9 std\cf4 ::\cf9 cout\cf4  << \cf8 "dumping XMP object to file XMPDump.txt"\cf4  << \cf9 std\cf4 ::\cf7 endl\cf4 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf9 std\cf4 ::\cf9 ofstream\cf4  dumpFile;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 rdfwritefile = filename+\cf8 "XMPDump.txt"\cf4 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 dumpFile.\cf7 open\cf4 (rdfwritefile.\cf7 c_str\cf4 (), \cf9 std\cf4 ::\cf9 ios\cf4 ::\cf5 out\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 meta.\cf10 DumpObject\cf4 (\cf10 XMPFileDump\cf4 , &dumpFile);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 dumpFile.\cf7 close\cf4 ();
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf2 // Dump the namespaces to a file
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf9 std\cf4 ::\cf9 cout\cf4  << \cf8 "dumping namespaces to file NameDump.txt"\cf4  << \cf9 std\cf4 ::\cf7 endl\cf4 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 rdfwritefile = filename+\cf8 "NameDump.txt"\cf4 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 dumpFile.\cf7 open\cf4 (rdfwritefile.\cf7 c_str\cf4 (), \cf9 std\cf4 ::\cf9 ios\cf4 ::\cf5 out\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 meta.\cf10 DumpNamespaces\cf4 (\cf10 XMPFileDump\cf4 , &dumpFile);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 dumpFile.\cf7 close\cf4 ();
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf5 if\cf4  (myFile.\cf10 CanPutXMP\cf4 (meta)) \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     myFile.\cf10 PutXMP\cf4 (meta);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \} \cf5 else\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     *error = [\cf9 NSError\cf4  \cf7 errorWithDomain\cf4 :\cf12 XMPUtilsDomain\cf4  \cf7 code\cf4 :-\cf11 2\cf4  \cf7 userInfo\cf4 :\cf11 @\{\cf8 @"message"\cf4 : \cf8 @"write error!"\cf11 \}\cf4 ];
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 myFile.\cf10 CloseFile\cf4 ();
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \} \cf5 else\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf9 std\cf4 ::\cf9 cout\cf4  << \cf8 "Unable to open "\cf4  << filename << \cf9 std\cf4 ::\cf7 endl\cf4 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 *error = [\cf9 NSError\cf4  \cf7 errorWithDomain\cf4 :\cf12 XMPUtilsDomain\cf4  \cf7 code\cf4 :-\cf11 3\cf4  \cf7 userInfo\cf4 :\cf11 @\{\cf8 @"message"\cf4 : \cf8 @"Unable to open"\cf11 \}\cf4 ];
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \} \cf5 catch\cf4  (\cf6 XMP_Error\cf4  & e) \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf9 std\cf4 ::\cf9 cout\cf4  << \cf8 "ERROR: "\cf4  << e.\cf10 GetErrMsg\cf4 () << \cf9 std\cf4 ::\cf7 endl\cf4 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             *error = [\cf9 NSError\cf4  \cf7 errorWithDomain\cf4 :\cf12 XMPUtilsDomain\cf4  \cf7 code\cf4 :-\cf11 3\cf4  \cf7 userInfo\cf4 :\cf11 @\{\cf8 @"message"\cf4 : \cf8 @"write other error"\cf11 \}\cf4 ];
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \}\
+\
+\
+\
+\
+                meta.\cf10 AppendArrayItem\cf4 (kXMP_NS_SDK_PHOTO, \cf8 "PhotoInfo"\cf4 , \cf10 kXMP_PropArrayIsOrdered\cf4 , \cf11 0\cf4 , \cf10 kXMP_PropValueIsStruct\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf2 // Compose a path to the last item of the DocumentEdit array, this gives the path to the structure
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf9 std\cf4 ::\cf9 string\cf4  lastItemPath;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf6 SXMPUtils\cf4 ::\cf10 ComposeArrayItemPath\cf4 (kXMP_NS_SDK_PHOTO, \cf8 "PhotoInfo"\cf4 , \cf12 kXMP_ArrayLastItem\cf4 , &lastItemPath);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf9 std\cf4 ::\cf9 string\cf4  path;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf2 // Add 
+\f2 \'8d\'48\'8e\'96\'8c\'8f\'96\'bc
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf6 SXMPUtils\cf4 ::\cf10 ComposeStructFieldPath\cf4 (kXMP_NS_SDK_PHOTO, lastItemPath.\cf7 c_str\cf4 (), kXMP_NS_SDK_PHOTO, \cf8 "ConstructionName"\cf4 , &path);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 meta.\cf10 SetProperty\cf4 (kXMP_NS_SDK_PHOTO, path.\cf7 c_str\cf4 (), \cf8 "
+\f2 \'83\'54\'83\'93\'83\'76\'83\'8b\'8d\'48\'8e\'96
+\f0 "\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf2 // Add 
+\f2 \'8e\'f3\'92\'8d\'8e\'d2\'96\'bc
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf6 SXMPUtils\cf4 ::\cf10 ComposeStructFieldPath\cf4 (kXMP_NS_SDK_PHOTO, lastItemPath.\cf7 c_str\cf4 (), kXMP_NS_SDK_PHOTO, \cf8 "Contructor"\cf4 , &path);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 meta.\cf10 SetProperty\cf4 (kXMP_NS_SDK_PHOTO, path.\cf7 c_str\cf4 (), \cf8 "
+\f2 \'83\'54\'83\'93\'83\'76\'83\'8b\'8d\'48\'8e\'96
+\f0 "\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf2 // Add 
+\f2 \'8e\'ca\'90\'5e\'81\'45\'91\'e5\'95\'aa\'97\'de
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf6 SXMPUtils\cf4 ::\cf10 ComposeStructFieldPath\cf4 (kXMP_NS_SDK_PHOTO, lastItemPath.\cf7 c_str\cf4 (), kXMP_NS_SDK_PHOTO, \cf8 "LargeClassification"\cf4 , &path);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 meta.\cf10 SetProperty\cf4 (kXMP_NS_SDK_PHOTO, path.\cf7 c_str\cf4 (), \cf8 "
+\f2 \'83\'54\'83\'93\'83\'76\'83\'8b\'8d\'48\'8e\'96
+\f0 "\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf2 // Add 
+\f2 \'8e\'ca\'90\'5e\'8b\'e6\'95\'aa
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf6 SXMPUtils\cf4 ::\cf10 ComposeStructFieldPath\cf4 (kXMP_NS_SDK_PHOTO, lastItemPath.\cf7 c_str\cf4 (), kXMP_NS_SDK_PHOTO, \cf8 "PhotoClassification"\cf4 , &path);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 meta.\cf10 SetProperty\cf4 (kXMP_NS_SDK_PHOTO, path.\cf7 c_str\cf4 (), \cf8 "
+\f2 \'83\'54\'83\'93\'83\'76\'83\'8b\'8d\'48\'8e\'96
+\f0 "\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf2 // Add 
+\f2 \'8d\'48\'8e\'ed
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf6 SXMPUtils\cf4 ::\cf10 ComposeStructFieldPath\cf4 (kXMP_NS_SDK_PHOTO, lastItemPath.\cf7 c_str\cf4 (), kXMP_NS_SDK_PHOTO, \cf8 "ConstructionType"\cf4 , &path);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 meta.\cf10 SetProperty\cf4 (kXMP_NS_SDK_PHOTO, path.\cf7 c_str\cf4 (), \cf8 "
+\f2 \'83\'54\'83\'93\'83\'76\'83\'8b\'8d\'48\'8e\'96
+\f0 "\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf2 // Add 
+\f2 \'8e\'ed\'95\'ca
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf6 SXMPUtils\cf4 ::\cf10 ComposeStructFieldPath\cf4 (kXMP_NS_SDK_PHOTO, lastItemPath.\cf7 c_str\cf4 (), kXMP_NS_SDK_PHOTO, \cf8 "MiddleClassification"\cf4 , &path);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 meta.\cf10 SetProperty\cf4 (kXMP_NS_SDK_PHOTO, path.\cf7 c_str\cf4 (), \cf8 "
+\f2 \'83\'54\'83\'93\'83\'76\'83\'8b\'8d\'48\'8e\'96
+\f0 "\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf2 // Add 
+\f2 \'8d\'d7\'95\'ca
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf6 SXMPUtils\cf4 ::\cf10 ComposeStructFieldPath\cf4 (kXMP_NS_SDK_PHOTO, lastItemPath.\cf7 c_str\cf4 (), kXMP_NS_SDK_PHOTO, \cf8 "SmallClassification"\cf4 , &path);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 meta.\cf10 SetProperty\cf4 (kXMP_NS_SDK_PHOTO, path.\cf7 c_str\cf4 (), \cf8 "
+\f2 \'83\'54\'83\'93\'83\'76\'83\'8b\'8d\'48\'8e\'96
+\f0 "\cf4 );
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf4                 \cf2 // Add 
+\f2 \'8e\'ca\'90\'5e\'83\'5e\'83\'43\'83\'67\'83\'8b
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf6 SXMPUtils\cf4 ::\cf10 ComposeStructFieldPath\cf4 (kXMP_NS_SDK_PHOTO, lastItemPath.\cf7 c_str\cf4 (), kXMP_NS_SDK_PHOTO, \cf8 "Title"\cf4 , &path);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 meta.\cf10 SetProperty\cf4 (kXMP_NS_SDK_PHOTO, path.\cf7 c_str\cf4 (), \cf8 "
+\f2 \'83\'54\'83\'93\'83\'76\'83\'8b\'8d\'48\'8e\'96
+\f0 "\cf4 );\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\pard\tx543\pardeftab543\pardirnatural\partightenfactor0
+\cf2 //
+\f2 \'8e\'7b\'8d\'48\'8a\'c7\'97\'9d\'92\'6c
+\f1\fs24 \cf0 \
+\pard\tx543\pardeftab543\pardirnatural\partightenfactor0
+
+\f0\fs22 \cf4                 meta.\cf10 AppendArrayItem\cf4 (kXMP_NS_SDK_PHOTO, \cf8 "Measurements"\cf4 , \cf10 kXMP_PropArrayIsOrdered\cf4 , \cf11 0\cf4 , \cf10 kXMP_PropValueIsStruct\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf9 std\cf4 ::\cf9 string\cf4  lastItemPath;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf6 SXMPUtils\cf4 ::\cf10 ComposeArrayItemPath\cf4 (kXMP_NS_SDK_PHOTO, \cf8 "Measurements"\cf4 , \cf12 kXMP_ArrayLastItem\cf4 , &lastItemPath);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf9 std\cf4 ::\cf9 string\cf4  path;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf2 //
+\f2 \'95\'aa\'97\'de
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf6 SXMPUtils\cf4 ::\cf10 ComposeStructFieldPath\cf4 (kXMP_NS_SDK_PHOTO, lastItemPath.\cf7 c_str\cf4 (), kXMP_NS_SDK_MEASUREMENT, \cf8 "Classification"\cf4 , &path);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 meta.\cf10 SetProperty\cf4 (kXMP_NS_SDK_PHOTO, path.\cf7 c_str\cf4 (), \cf8 "
+\f2 \'83\'54\'83\'93\'83\'76\'83\'8b\'8d\'48\'8e\'96
+\f0 "\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf2 //std::string measurePath;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf2 //
+\f2 \'91\'aa\'92\'e8\'92\'6c
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf2 //SXMPUtils::ComposeStructFieldPath(kXMP_NS_SDK_PHOTO, lastItemPath.c_str(), kXMP_NS_SDK_MEASUREMENT, "MeasurementItems", &path);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 meta.\cf10 SetStructField\cf4 (kXMP_NS_SDK_PHOTO, lastItemPath.\cf7 c_str\cf4 (), kXMP_NS_SDK_MEASUREMENT, \cf8 "MeasurementItems"\cf4 , \cf11 0\cf4 , \cf10 kXMP_PropValueIsStruct\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf2 // Compose a path to the field that has the ContactDetails structure
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf9 std\cf4 ::\cf9 string\cf4  contactStructPath;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf6 SXMPUtils\cf4 ::\cf10 ComposeStructFieldPath\cf4 (kXMP_NS_SDK_PHOTO, lastItemPath.\cf7 c_str\cf4 (), kXMP_NS_SDK_MEASUREMENT, \cf8 "MeasurementItems"\cf4 , &contactStructPath);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf2 //meta.SetStructField(kXMP_NS_SDK_PHOTO, contactStructPath.c_str(), kXMP_NS_SDK_ITEM, "Name", 0, kXMP_PropArrayIsAlternate);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 meta.\cf10 SetStructField\cf4 (kXMP_NS_SDK_PHOTO, contactStructPath.\cf7 c_str\cf4 (), kXMP_NS_SDK_ITEM, \cf8 "Name"\cf4 , \cf8 ""\cf4 , \cf11 0\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf9 std\cf4 ::\cf9 string\cf4  pathw;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf6 SXMPUtils\cf4 ::\cf10 ComposeStructFieldPath\cf4 (kXMP_NS_SDK_PHOTO, contactStructPath.\cf7 c_str\cf4 (), kXMP_NS_SDK_ITEM, \cf8 "Name"\cf4 , &pathw);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf2 //meta.AppendArrayItem(kXMP_NS_SDK_PHOTO, pathw.c_str(), 0, "js@adobe.meta.com", 0);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf2 //meta.AppendArrayItem(kXMP_NS_SDK_PHOTO, pathw.c_str(), 0, "js@adobe.home.com", 0);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 meta.\cf10 SetProperty\cf4 (kXMP_NS_SDK_PHOTO, pathw.\cf7 c_str\cf4 (), \cf8 "sample"\cf4 , \cf11 0\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf2 //item:Mark
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 meta.\cf10 SetStructField\cf4 (kXMP_NS_SDK_PHOTO, contactStructPath.\cf7 c_str\cf4 (), kXMP_NS_SDK_ITEM, \cf8 "Mark"\cf4 , \cf8 ""\cf4 , \cf11 0\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf6 SXMPUtils\cf4 ::\cf10 ComposeStructFieldPath\cf4 (kXMP_NS_SDK_PHOTO, contactStructPath.\cf7 c_str\cf4 (), kXMP_NS_SDK_ITEM, \cf8 "Mark"\cf4 , &pathw);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 meta.\cf10 SetProperty\cf4 (kXMP_NS_SDK_PHOTO, pathw.\cf7 c_str\cf4 (), \cf8 "sample"\cf4 , \cf11 0\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf2 //item:DesignedValue
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 meta.\cf10 SetStructField\cf4 (kXMP_NS_SDK_PHOTO, contactStructPath.\cf7 c_str\cf4 (), kXMP_NS_SDK_ITEM, \cf8 "DesignedValue"\cf4 , \cf8 ""\cf4 , \cf11 0\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf6 SXMPUtils\cf4 ::\cf10 ComposeStructFieldPath\cf4 (kXMP_NS_SDK_PHOTO, contactStructPath.\cf7 c_str\cf4 (), kXMP_NS_SDK_ITEM, \cf8 "DesignedValue"\cf4 , &pathw);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 meta.\cf10 SetProperty\cf4 (kXMP_NS_SDK_PHOTO, pathw.\cf7 c_str\cf4 (), \cf8 "sample"\cf4 , \cf11 0\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf2 //item:MeasuredValue
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 meta.\cf10 SetStructField\cf4 (kXMP_NS_SDK_PHOTO, contactStructPath.\cf7 c_str\cf4 (), kXMP_NS_SDK_ITEM, \cf8 "MeasuredValue"\cf4 , \cf8 ""\cf4 , \cf11 0\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf6 SXMPUtils\cf4 ::\cf10 ComposeStructFieldPath\cf4 (kXMP_NS_SDK_PHOTO, contactStructPath.\cf7 c_str\cf4 (), kXMP_NS_SDK_ITEM, \cf8 "MeasuredValue"\cf4 , &pathw);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 meta.\cf10 SetProperty\cf4 (kXMP_NS_SDK_PHOTO, pathw.\cf7 c_str\cf4 (), \cf8 "sample"\cf4 , \cf11 0\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf2 //item:UnitName
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 meta.\cf10 SetStructField\cf4 (kXMP_NS_SDK_PHOTO, contactStructPath.\cf7 c_str\cf4 (), kXMP_NS_SDK_ITEM, \cf8 "UnitName"\cf4 , \cf8 ""\cf4 , \cf11 0\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf6 SXMPUtils\cf4 ::\cf10 ComposeStructFieldPath\cf4 (kXMP_NS_SDK_PHOTO, contactStructPath.\cf7 c_str\cf4 (), kXMP_NS_SDK_ITEM, \cf8 "UnitName"\cf4 , &pathw);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 meta.\cf10 SetProperty\cf4 (kXMP_NS_SDK_PHOTO, pathw.\cf7 c_str\cf4 (), \cf8 "sample"\cf4 , \cf11 0\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf2 //item:Remarks
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 meta.\cf10 SetStructField\cf4 (kXMP_NS_SDK_PHOTO, contactStructPath.\cf7 c_str\cf4 (), kXMP_NS_SDK_ITEM, \cf8 "Remarks"\cf4 , \cf11 0\cf4 , \cf10 kXMP_PropArrayIsAlternate\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf6 SXMPUtils\cf4 ::\cf10 ComposeStructFieldPath\cf4 (kXMP_NS_SDK_PHOTO, contactStructPath.\cf7 c_str\cf4 (), kXMP_NS_SDK_ITEM, \cf8 "Remarks"\cf4 , &pathw);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 meta.\cf10 AppendArrayItem\cf4 (kXMP_NS_SDK_PHOTO, pathw.\cf7 c_str\cf4 (), \cf11 0\cf4 , \cf8 "js@adobe.meta.com"\cf4 , \cf11 0\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 meta.\cf10 AppendArrayItem\cf4 (kXMP_NS_SDK_PHOTO, pathw.\cf7 c_str\cf4 (), \cf11 0\cf4 , \cf8 "js@adobe.home.com"\cf4 , \cf11 0\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 meta.\cf10 AppendArrayItem\cf4 (kXMP_NS_SDK_PHOTO, pathw.\cf7 c_str\cf4 (), \cf11 0\cf4 , \cf8 "js@adobe.home.com"\cf4 , \cf11 0\cf4 );\
+\
+\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab543\pardirnatural\partightenfactor0
+
+\f1\fs24 \cf0 \
+\pard\tx543\pardeftab543\pardirnatural\partightenfactor0
+
+\f0\fs22 \cf4                 
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf2 // Write the RDF to a file
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf9 std\cf4 ::\cf9 cout\cf4  << \cf8 "writing RDF to file CS_RDF.txt"\cf4  << \cf9 std\cf4 ::\cf7 endl\cf4 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf9 std\cf4 ::\cf9 string\cf4  metaBuffer;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 meta.\cf10 SerializeToBuffer\cf4 (&metaBuffer);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf2 //writeRDFToFile(&metaBuffer, "CS_RDF.txt");
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf9 std\cf4 ::\cf9 ofstream\cf4  outfile;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf9 std\cf4 ::\cf9 string\cf4  rdfwritefile = filename+\cf8 "CS_RDF.txt"\cf4 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 outfile.\cf7 open\cf4 (rdfwritefile.\cf7 c_str\cf4 (), \cf9 std\cf4 ::\cf9 ios\cf4 ::\cf5 out\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 outfile << *&metaBuffer;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 outfile.\cf7 close\cf4 ();
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf4                 \cf9 std\cf4 ::\cf9 cout\cf4  << \cf8 "dumping XMP object to file XMPDump.txt"\cf4  << \cf9 std\cf4 ::\cf7 endl\cf4 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf9 std\cf4 ::\cf9 ofstream\cf4  dumpFile;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 rdfwritefile = filename+\cf8 "XMPDump.txt"\cf4 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 dumpFile.\cf7 open\cf4 (rdfwritefile.\cf7 c_str\cf4 (), \cf9 std\cf4 ::\cf9 ios\cf4 ::\cf5 out\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 meta.\cf10 DumpObject\cf4 (\cf10 XMPFileDump\cf4 , &dumpFile);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 dumpFile.\cf7 close\cf4 ();
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf4                 \cf2 // Dump the namespaces to a file
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf9 std\cf4 ::\cf9 cout\cf4  << \cf8 "dumping namespaces to file NameDump.txt"\cf4  << \cf9 std\cf4 ::\cf7 endl\cf4 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 rdfwritefile = filename+\cf8 "NameDump.txt"\cf4 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 dumpFile.\cf7 open\cf4 (rdfwritefile.\cf7 c_str\cf4 (), \cf9 std\cf4 ::\cf9 ios\cf4 ::\cf5 out\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 meta.\cf10 DumpNamespaces\cf4 (\cf10 XMPFileDump\cf4 , &dumpFile);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 dumpFile.\cf7 close\cf4 ();\
+\
+\
+\
+\cf6 XMP_Status\cf4  XMPFileDump(\cf5 void\cf4  * refCon, \cf6 XMP_StringPtr\cf4  buffer, \cf6 XMP_StringLen\cf4  bufferSize)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4 \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4     \cf6 XMP_Status\cf4  status = \cf11 0\cf4 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4     \cf5 try
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4     \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf9 std\cf4 ::\cf9 ofstream\cf4  * outFile = \cf5 static_cast\cf4 <\cf9 std\cf4 ::\cf9 ofstream\cf4 *>(refCon);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         (*outFile).\cf7 write\cf4 (buffer, bufferSize);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4     \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4     \cf5 catch\cf4 (\cf6 XMP_Error\cf4  & e)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4     \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf9 std\cf4 ::\cf9 cout\cf4  << e.\cf10 GetErrMsg\cf4 () << \cf9 std\cf4 ::\cf7 endl\cf4 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf5 return\cf4  -\cf11 1\cf4 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4     \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4     \cf5 return\cf4  status;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4 \}\
+\
+\
++ (\cf5 void\cf4 )writePhotoXmp:(\cf9 NSString\cf4  *)path error:(\cf9 NSError\cf4  **) error;\
+\
++ (\cf5 void\cf4 )writePhotoXmp:(\cf9 NSString\cf4  *)path error:(\cf9 NSError\cf4  *\cf5 __autoreleasing\cf4  *)error
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4 \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4     \cf2 //
+\f2 \'83\'74\'83\'40\'83\'43\'83\'8b\'83\'70\'83\'58
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4     \cf2 //dest.jpg
+\f2 \'82\'aa\'95\'db\'91\'b6\'82\'b3\'82\'ea\'82\'c4\'82\'a2\'82\'e9
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4     \cf9 std\cf4 ::\cf9 string\cf4  filename = [path \cf7 UTF8String\cf4 ];
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4     
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4     \cf2 //
+\f2 \'90\'56\'82\'b5\'82\'ad\'92\'e8\'8b\'60\'82\'b7\'82\'e9\'96\'bc\'91\'4f\'8b\'f3\'8a\'d4
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4     \cf5 const\cf4  \cf6 XMP_StringPtr\cf4   kXMP_NS_SDK_PHOTO = \cf8 "http://dcpadv.org/schema/3.0/photoinfo"\cf4 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4     \cf5 const\cf4  \cf6 XMP_StringPtr\cf4   kXMP_NS_SDK_MEASUREMENT = \cf8 "http://dcpadv.org/schema/3.0/measurement"\cf4 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4     \cf5 const\cf4  \cf6 XMP_StringPtr\cf4   kXMP_NS_SDK_ITEM = \cf8 "http://dcpadv.org/schema/3.0/measurementitem"\cf4 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4     
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4     \cf5 if\cf4  (!\cf6 SXMPMeta\cf4 ::\cf10 Initialize\cf4 ()) \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf9 std\cf4 ::\cf9 cout\cf4  << \cf8 "Could not initialize toolkit!"\cf4 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf5 if\cf4  (error) \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             *error = [\cf9 NSError\cf4  \cf7 errorWithDomain\cf4 :\cf12 XMPUtilsDomain\cf4  \cf7 code\cf4 :-\cf11 1\cf4  \cf7 userInfo\cf4 :\cf11 @\{\cf8 @"message"\cf4 : \cf8 @"Could not initialize toolkit!"\cf11 \}\cf4 ];
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf5 return\cf4 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4     \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4     \cf6 XMP_OptionBits\cf4  options = \cf11 0\cf4 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4     
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4     \cf2 // Must initialize SXMPFiles before we use it
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4     \cf5 if\cf4 (\cf6 SXMPFiles\cf4 ::\cf10 Initialize\cf4 (options))
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4     \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf5 try
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf2 // Options to open the file with - open for editing and use a smart handler
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf6 XMP_OptionBits\cf4  opts = \cf10 kXMPFiles_OpenForUpdate\cf4  | \cf10 kXMPFiles_OpenUseSmartHandler\cf4 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf5 bool\cf4  ok;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf6 SXMPFiles\cf4  myFile;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf9 std\cf4 ::\cf9 string\cf4  status = \cf8 ""\cf4 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf2 // First we try and open the file
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             ok = myFile.\cf10 OpenFile\cf4 (filename, \cf10 kXMP_UnknownFile\cf4 , opts);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf5 if\cf4 ( ! ok )
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 status += \cf8 "No smart handler available for "\cf4  + filename + \cf8 "\\n"\cf4 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 status += \cf8 "Trying packet scanning.\\n"\cf4 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf2 // Now try using packet scanning
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 opts = \cf10 kXMPFiles_OpenForUpdate\cf4  | \cf10 kXMPFiles_OpenUsePacketScanning\cf4 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 ok = myFile.\cf10 OpenFile\cf4 (filename, \cf10 kXMP_UnknownFile\cf4 , opts);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf2 // If the file is open then read get the XMP data
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf5 if\cf4 (ok)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf9 std\cf4 ::\cf9 string\cf4  actualPrefix;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf6 SXMPMeta\cf4 ::\cf10 RegisterNamespace\cf4 (kXMP_NS_SDK_PHOTO, \cf8 "photo"\cf4 , &actualPrefix);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf6 SXMPMeta\cf4 ::\cf10 RegisterNamespace\cf4 (kXMP_NS_SDK_MEASUREMENT, \cf8 "measurement"\cf4 , &actualPrefix);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf6 SXMPMeta\cf4 ::\cf10 RegisterNamespace\cf4 (kXMP_NS_SDK_ITEM, \cf8 "item"\cf4 , &actualPrefix);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf6 SXMPMeta\cf4  meta;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 myFile.\cf10 GetXMP\cf4 (&meta);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf2 // Add 
+\f2 \'8d\'48\'8e\'96\'8c\'8f\'96\'bc
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 meta.\cf10 SetProperty\cf4 (kXMP_NS_SDK_PHOTO, \cf8 "ConstructionName"\cf4 , \cf8 "sample"\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf2 // Add 
+\f2 \'8e\'f3\'92\'8d\'8e\'d2\'96\'bc
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 meta.\cf10 SetProperty\cf4 (kXMP_NS_SDK_PHOTO, \cf8 "Contructor"\cf4 , \cf8 "sample"\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf2 // Add 
+\f2 \'8e\'ca\'90\'5e\'81\'45\'91\'e5\'95\'aa\'97\'de
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 meta.\cf10 SetProperty\cf4 (kXMP_NS_SDK_PHOTO, \cf8 "LargeClassification"\cf4 , \cf8 "sample"\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf2 // Add 
+\f2 \'8e\'ca\'90\'5e\'8b\'e6\'95\'aa
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 meta.\cf10 SetProperty\cf4 (kXMP_NS_SDK_PHOTO, \cf8 "PhotoClassification"\cf4 , \cf8 "sample"\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf2 // Add 
+\f2 \'8d\'48\'8e\'ed
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 meta.\cf10 SetProperty\cf4 (kXMP_NS_SDK_PHOTO, \cf8 "ConstructionType"\cf4 , \cf8 "sample"\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf2 // Add 
+\f2 \'8e\'ed\'95\'ca
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 meta.\cf10 SetProperty\cf4 (kXMP_NS_SDK_PHOTO, \cf8 "MiddleClassification"\cf4 , \cf8 "sample"\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf2 // Add 
+\f2 \'8d\'d7\'95\'ca
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 meta.\cf10 SetProperty\cf4 (kXMP_NS_SDK_PHOTO, \cf8 "SmallClassification"\cf4 , \cf8 "sample"\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf2 // Add 
+\f2 \'8e\'ca\'90\'5e\'83\'5e\'83\'43\'83\'67\'83\'8b
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 meta.\cf10 SetProperty\cf4 (kXMP_NS_SDK_PHOTO, \cf8 "Title"\cf4 , \cf8 "sample"\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf9 std\cf4 ::\cf9 string\cf4  remarksPath;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf2 //
+\f2 \'8d\'48\'8e\'ed\'8b\'e6\'95\'aa\'97\'5c\'94\'f5
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf2 //
+\f2 \'92\'6c\'82\'aa\'82\'a0\'82\'c1\'82\'bd\'82\'e7\'81\'42\'81\'42\'81\'42
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 meta.\cf10 AppendArrayItem\cf4 (kXMP_NS_SDK_PHOTO, \cf8 "ClassificationRemarks"\cf4 , \cf10 kXMP_PropArrayIsOrdered\cf4 , \cf11 0\cf4 , \cf10 kXMP_PropValueIsArray\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf6 SXMPUtils\cf4 ::\cf10 ComposeArrayItemPath\cf4 (kXMP_NS_SDK_PHOTO, \cf8 "ClassificationRemarks"\cf4 , \cf12 kXMP_ArrayLastItem\cf4 , &remarksPath);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 meta.\cf10 AppendArrayItem\cf4 (kXMP_NS_SDK_PHOTO, remarksPath.\cf7 c_str\cf4 (), \cf11 0\cf4 , \cf8 "js@adobe.meta.com"\cf4 , \cf11 0\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 meta.\cf10 AppendArrayItem\cf4 (kXMP_NS_SDK_PHOTO, remarksPath.\cf7 c_str\cf4 (), \cf11 0\cf4 , \cf8 "js@adobe.home.com"\cf4 , \cf11 0\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf2 //
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 meta.\cf10 SetProperty\cf4 (kXMP_NS_SDK_PHOTO, \cf8 "ShootingSpot"\cf4 , \cf8 "sample"\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 meta.\cf10 SetProperty\cf4 (kXMP_NS_SDK_PHOTO, \cf8 "sRepresentative"\cf4 , \cf8 "sample"\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 meta.\cf10 SetProperty\cf4 (kXMP_NS_SDK_PHOTO, \cf8 "IsFrequencyOfSubmission"\cf4 , \cf8 "sample"\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf9 std\cf4 ::\cf9 string\cf4  lastItemPath;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf2 //
+\f2 \'8e\'7b\'8d\'48\'8a\'c7\'97\'9d\'92\'6c
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf2 //photo:Measurements
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 meta.\cf10 AppendArrayItem\cf4 (kXMP_NS_SDK_PHOTO, \cf8 "Measurements"\cf4 , \cf10 kXMP_PropArrayIsOrdered\cf4 , \cf11 0\cf4 , \cf10 kXMP_PropValueIsStruct\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf6 SXMPUtils\cf4 ::\cf10 ComposeArrayItemPath\cf4 (kXMP_NS_SDK_PHOTO, \cf8 "Measurements"\cf4 , \cf12 kXMP_ArrayLastItem\cf4 , &lastItemPath);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf9 std\cf4 ::\cf9 string\cf4  clssificationPath;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf2 //
+\f2 \'95\'aa\'97\'de
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf2 //measurement:Classification
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf6 SXMPUtils\cf4 ::\cf10 ComposeStructFieldPath\cf4 (kXMP_NS_SDK_PHOTO, lastItemPath.\cf7 c_str\cf4 (), kXMP_NS_SDK_MEASUREMENT, \cf8 "Classification"\cf4 , &clssificationPath);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 meta.\cf10 SetProperty\cf4 (kXMP_NS_SDK_PHOTO, clssificationPath.\cf7 c_str\cf4 (), \cf8 "
+\f2 \'83\'54\'83\'93\'83\'76\'83\'8b\'8d\'48\'8e\'96
+\f0 "\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf9 std\cf4 ::\cf9 string\cf4  measurementPath;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf2 //
+\f2 \'91\'aa\'92\'e8\'92\'6c
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf2 //measurement:MeasurementItems
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 meta.\cf10 SetStructField\cf4 (kXMP_NS_SDK_PHOTO, lastItemPath.\cf7 c_str\cf4 (), kXMP_NS_SDK_MEASUREMENT, \cf8 "MeasurementItems"\cf4 , \cf11 0\cf4 , \cf10 kXMP_PropValueIsStruct\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf6 SXMPUtils\cf4 ::\cf10 ComposeStructFieldPath\cf4 (kXMP_NS_SDK_PHOTO, lastItemPath.\cf7 c_str\cf4 (), kXMP_NS_SDK_MEASUREMENT, \cf8 "MeasurementItems"\cf4 , &measurementPath);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf9 std\cf4 ::\cf9 string\cf4  itemPath;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf2 //item:Name
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 meta.\cf10 SetStructField\cf4 (kXMP_NS_SDK_PHOTO, measurementPath.\cf7 c_str\cf4 (), kXMP_NS_SDK_ITEM, \cf8 "Name"\cf4 , \cf8 ""\cf4 , \cf11 0\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf6 SXMPUtils\cf4 ::\cf10 ComposeStructFieldPath\cf4 (kXMP_NS_SDK_PHOTO, measurementPath.\cf7 c_str\cf4 (), kXMP_NS_SDK_ITEM, \cf8 "Name"\cf4 , &itemPath);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 meta.\cf10 SetProperty\cf4 (kXMP_NS_SDK_PHOTO, itemPath.\cf7 c_str\cf4 (), \cf8 "sample"\cf4 , \cf11 0\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf2 //item:Mark
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 meta.\cf10 SetStructField\cf4 (kXMP_NS_SDK_PHOTO, measurementPath.\cf7 c_str\cf4 (), kXMP_NS_SDK_ITEM, \cf8 "Mark"\cf4 , \cf8 ""\cf4 , \cf11 0\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf6 SXMPUtils\cf4 ::\cf10 ComposeStructFieldPath\cf4 (kXMP_NS_SDK_PHOTO, measurementPath.\cf7 c_str\cf4 (), kXMP_NS_SDK_ITEM, \cf8 "Mark"\cf4 , &itemPath);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 meta.\cf10 SetProperty\cf4 (kXMP_NS_SDK_PHOTO, itemPath.\cf7 c_str\cf4 (), \cf8 "sample"\cf4 , \cf11 0\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf2 //item:DesignedValue
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 meta.\cf10 SetStructField\cf4 (kXMP_NS_SDK_PHOTO, measurementPath.\cf7 c_str\cf4 (), kXMP_NS_SDK_ITEM, \cf8 "DesignedValue"\cf4 , \cf8 ""\cf4 , \cf11 0\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf6 SXMPUtils\cf4 ::\cf10 ComposeStructFieldPath\cf4 (kXMP_NS_SDK_PHOTO, measurementPath.\cf7 c_str\cf4 (), kXMP_NS_SDK_ITEM, \cf8 "DesignedValue"\cf4 , &itemPath);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 meta.\cf10 SetProperty\cf4 (kXMP_NS_SDK_PHOTO, itemPath.\cf7 c_str\cf4 (), \cf8 "sample"\cf4 , \cf11 0\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf2 //item:MeasuredValue
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 meta.\cf10 SetStructField\cf4 (kXMP_NS_SDK_PHOTO, measurementPath.\cf7 c_str\cf4 (), kXMP_NS_SDK_ITEM, \cf8 "MeasuredValue"\cf4 , \cf8 ""\cf4 , \cf11 0\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf6 SXMPUtils\cf4 ::\cf10 ComposeStructFieldPath\cf4 (kXMP_NS_SDK_PHOTO, measurementPath.\cf7 c_str\cf4 (), kXMP_NS_SDK_ITEM, \cf8 "MeasuredValue"\cf4 , &itemPath);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 meta.\cf10 SetProperty\cf4 (kXMP_NS_SDK_PHOTO, itemPath.\cf7 c_str\cf4 (), \cf8 "sample"\cf4 , \cf11 0\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf2 //item:UnitName
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 meta.\cf10 SetStructField\cf4 (kXMP_NS_SDK_PHOTO, measurementPath.\cf7 c_str\cf4 (), kXMP_NS_SDK_ITEM, \cf8 "UnitName"\cf4 , \cf8 ""\cf4 , \cf11 0\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf6 SXMPUtils\cf4 ::\cf10 ComposeStructFieldPath\cf4 (kXMP_NS_SDK_PHOTO, measurementPath.\cf7 c_str\cf4 (), kXMP_NS_SDK_ITEM, \cf8 "UnitName"\cf4 , &itemPath);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 meta.\cf10 SetProperty\cf4 (kXMP_NS_SDK_PHOTO, itemPath.\cf7 c_str\cf4 (), \cf8 "sample"\cf4 , \cf11 0\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf2 //item:Remarks
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 meta.\cf10 SetStructField\cf4 (kXMP_NS_SDK_PHOTO, measurementPath.\cf7 c_str\cf4 (), kXMP_NS_SDK_ITEM, \cf8 "Remarks"\cf4 , \cf11 0\cf4 , \cf10 kXMP_PropArrayIsAlternate\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf6 SXMPUtils\cf4 ::\cf10 ComposeStructFieldPath\cf4 (kXMP_NS_SDK_PHOTO, measurementPath.\cf7 c_str\cf4 (), kXMP_NS_SDK_ITEM, \cf8 "Remarks"\cf4 , &itemPath);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 meta.\cf10 AppendArrayItem\cf4 (kXMP_NS_SDK_PHOTO, itemPath.\cf7 c_str\cf4 (), \cf11 0\cf4 , \cf8 "js@adobe.meta.com"\cf4 , \cf11 0\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 meta.\cf10 AppendArrayItem\cf4 (kXMP_NS_SDK_PHOTO, itemPath.\cf7 c_str\cf4 (), \cf11 0\cf4 , \cf8 "js@adobe.home.com"\cf4 , \cf11 0\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 meta.\cf10 AppendArrayItem\cf4 (kXMP_NS_SDK_PHOTO, itemPath.\cf7 c_str\cf4 (), \cf11 0\cf4 , \cf8 "js@adobe.home.com"\cf4 , \cf11 0\cf4 );
+\f1\fs24 \cf0 \
+\
+\
+
+\f0\fs22 \cf4                 
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf2 // Add 
+\f2 \'8e\'f3\'92\'8d\'8e\'d2\'90\'e0\'96\'be\'95\'b6
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 meta.\cf10 SetProperty\cf4 (kXMP_NS_SDK_PHOTO, \cf8 "ContractorRemarks"\cf4 , \cf8 "sample"\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf2 // Add 
+\f2 \'94\'f5\'8d\'6c
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 meta.\cf10 SetProperty\cf4 (kXMP_NS_SDK_PHOTO, \cf8 "Remarks"\cf4 , \cf8 "sample"\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf2 //
+\f2 \'8f\'91\'82\'ab\'8d\'9e\'82\'dd
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf5 if\cf4  (myFile.\cf10 CanPutXMP\cf4 (meta)) \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     myFile.\cf10 PutXMP\cf4 (meta);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \} \cf5 else\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                     *error = [\cf9 NSError\cf4  \cf7 errorWithDomain\cf4 :\cf12 XMPUtilsDomain\cf4  \cf7 code\cf4 :-\cf11 2\cf4  \cf7 userInfo\cf4 :\cf11 @\{\cf8 @"message"\cf4 : \cf8 @"write error!"\cf11 \}\cf4 ];
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 myFile.\cf10 CloseFile\cf4 ();
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf5 else
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf9 std\cf4 ::\cf9 cout\cf4  << \cf8 "Unable to open "\cf4  << filename << \cf9 std\cf4 ::\cf7 endl\cf4 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 *error = [\cf9 NSError\cf4  \cf7 errorWithDomain\cf4 :\cf12 XMPUtilsDomain\cf4  \cf7 code\cf4 :-\cf11 3\cf4  \cf7 userInfo\cf4 :\cf11 @\{\cf8 @"message"\cf4 : \cf8 @"Unable to open"\cf11 \}\cf4 ];
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf5 catch\cf4 (\cf6 XMP_Error\cf4  & e)
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf9 std\cf4 ::\cf9 cout\cf4  << \cf8 "ERROR: "\cf4  << e.\cf10 GetErrMsg\cf4 () << \cf9 std\cf4 ::\cf7 endl\cf4 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             *error = [\cf9 NSError\cf4  \cf7 errorWithDomain\cf4 :\cf12 XMPUtilsDomain\cf4  \cf7 code\cf4 :-\cf11 3\cf4  \cf7 userInfo\cf4 :\cf11 @\{\cf8 @"message"\cf4 : \cf8 @"write other error"\cf11 \}\cf4 ];
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf2 // Terminate the toolkit
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf6 SXMPFiles\cf4 ::\cf10 Terminate\cf4 ();
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf6 SXMPMeta\cf4 ::\cf10 Terminate\cf4 ();
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4     \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4     \cf5 else
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4     \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf9 std\cf4 ::\cf9 cout\cf4  << \cf8 "Could not initialize SXMPFiles."\cf4 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         *error = [\cf9 NSError\cf4  \cf7 errorWithDomain\cf4 :\cf12 XMPUtilsDomain\cf4  \cf7 code\cf4 :-\cf11 4\cf4  \cf7 userInfo\cf4 :\cf11 @\{\cf8 @"message"\cf4 : \cf8 @"Could not initialize SXMPFiles."\cf11 \}\cf4 ];
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4     \}\
+\pard\tx543\pardeftab543\pardirnatural\partightenfactor0
+\cf4 \ulth \}\
+\
+\
+\
+\pard\tx543\pardeftab543\pardirnatural\partightenfactor0
+\cf4 \ulnone + (\cf5 void\cf4 )getXmpInfo:(\cf5 int\cf4 )boardId;\
+\
+\
++ (\cf5 void\cf4 )getXmpInfo:(\cf5 int\cf4 )boardId
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4 \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4     \cf9 NSString\cf4  *dbName = \cf8 @"/LocalDatabase/photoapp.db"\cf4 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4     \cf9 NSArray\cf4  *paths = \cf7 NSSearchPathForDirectoriesInDomains\cf4 (\cf7 NSLibraryDirectory\cf4 , \cf7 NSUserDomainMask\cf4 , \cf5 YES\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4     \cf9 NSString\cf4  *path = [paths \cf7 objectAtIndex\cf4 :\cf11 0\cf4 ];
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4     \cf9 NSString\cf4  *dbPath = [path \cf7 stringByAppendingPathComponent\cf4 :dbName];
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4     
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4     \cf9 NSFileManager\cf4  *manager = [\cf9 NSFileManager\cf4  \cf7 defaultManager\cf4 ];
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4     \cf2 //NSError *error = nil;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4     
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4     \cf5 if\cf4  (![manager \cf7 fileExistsAtPath\cf4 :dbPath]) \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf7 NSLog\cf4 (\cf8 @"
+\f2 \'83\'66\'81\'5b\'83\'5e\'83\'78\'81\'5b\'83\'58\'83\'74\'83\'40\'83\'43\'83\'8b\'82\'aa\'82\'a0\'82\'e8\'82\'dc\'82\'b9\'82\'f1
+\f0 "\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4     \} \cf5 else\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf7 NSLog\cf4 (\cf8 @"
+\f2 \'83\'66\'81\'5b\'83\'5e\'83\'78\'81\'5b\'83\'58\'83\'74\'83\'40\'83\'43\'83\'8b\'82\'aa\'82\'a0\'82\'e8\'82\'dc\'82\'b5\'82\'bd
+\f0 "\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4     \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4     
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4     \cf6 sqlite3\cf4  *database;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4     \cf6 sqlite3_stmt\cf4  *statement;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4     \cf9 NSString\cf4  *str = \cf8 @"SELECT itm.itemId, itm.itemName, itm.exifName, biv.boardId, biv.numValue, biv.stringValue From BoardItemValue biv JOIN Item itm on biv.itemId = itm.itemId  Where boardId = "\cf4 ;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4     \cf9 NSString\cf4  *num = [\cf9 NSString\cf4  \cf7 stringWithFormat\cf4 :\cf8 @"%d"\cf4 , boardId];
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4     \cf9 NSString\cf4  *query = [str \cf7 stringByAppendingString\cf4 :num];
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4     
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4     \cf7 NSLog\cf4 (\cf8 @"%@"\cf4 , query);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4     
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4     \cf5 if\cf4  (\cf10 sqlite3_open\cf4 ([dbPath \cf7 UTF8String\cf4 ], &database) == \cf12 SQLITE_OK\cf4 ) \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf7 NSLog\cf4 (\cf8 @"
+\f2 \'83\'66\'81\'5b\'83\'5e\'83\'78\'81\'5b\'83\'58\'83\'74\'83\'40\'83\'43\'83\'8b\'82\'f0\'8a\'4a\'82\'ad\'82\'b1\'82\'c6\'82\'aa\'82\'c5\'82\'ab\'82\'dc\'82\'b5\'82\'bd
+\f0 "\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf5 if\cf4  (\cf10 sqlite3_prepare_v2\cf4 (database, [query \cf7 UTF8String\cf4 ], -\cf11 1\cf4 , &statement, \cf5 NULL\cf4 ) == \cf12 SQLITE_OK\cf4 ) \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf5 while\cf4  (\cf10 sqlite3_step\cf4 (statement) == \cf12 SQLITE_ROW\cf4 ) \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf5 int\cf4  itemId = \cf10 sqlite3_column_int\cf4 (statement, \cf11 0\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf5 char\cf4  *itemName = (\cf5 char\cf4  *) \cf10 sqlite3_column_text\cf4 (statement, \cf11 1\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf5 char\cf4  *exifName = (\cf5 char\cf4  *) \cf10 sqlite3_column_text\cf4 (statement, \cf11 2\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf5 int\cf4  boardId = \cf10 sqlite3_column_int\cf4 (statement, \cf11 3\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf5 int\cf4  numValue = \cf10 sqlite3_column_int\cf4 (statement, \cf11 4\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf5 char\cf4  *stringValue = (\cf5 char\cf4  *) \cf10 sqlite3_column_text\cf4 (statement, \cf11 5\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf9 NSString\cf4  *itm = [\cf9 NSString\cf4  \cf7 stringWithCString\cf4 :itemName \cf7 encoding\cf4 :\cf7 NSUTF8StringEncoding\cf4 ];
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf9 NSString\cf4  *exi = [\cf9 NSString\cf4  \cf7 stringWithCString\cf4 :exifName \cf7 encoding\cf4 :\cf7 NSUTF8StringEncoding\cf4 ];
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf9 NSString\cf4  *str = [\cf9 NSString\cf4  \cf7 stringWithCString\cf4 :stringValue \cf7 encoding\cf4 :\cf7 NSUTF8StringEncoding\cf4 ];
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf7 NSLog\cf4 (\cf8 @"objective-c 
+\f2 \'82\'c5\'81\'40\'83\'66\'81\'5b\'83\'5e\'83\'78\'81\'5b\'83\'58\'82\'c9\'90\'da\'91\'b1
+\f0 "\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf7 NSLog\cf4 (\cf8 @"itemID : %d"\cf4 , itemId);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf7 NSLog\cf4 (\cf8 @"itemName : %@"\cf4 , itm);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf7 NSLog\cf4 (\cf8 @"itemName : %@"\cf4 , exi);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf7 NSLog\cf4 (\cf8 @"boardID : %d"\cf4 , boardId);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf7 NSLog\cf4 (\cf8 @"numValue : %d"\cf4 , numValue);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4                 \cf7 NSLog\cf4 (\cf8 @"stringValue : %@"\cf4 , str);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf10 sqlite3_finalize\cf4 (statement);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf10 sqlite3_close\cf4 (database);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \} \cf5 else\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4             \cf7 NSLog\cf4 (\cf8 @"
+\f2 \'83\'4e\'83\'47\'83\'8a\'82\'cc\'83\'52\'83\'93\'83\'70\'83\'43\'83\'8b\'82\'c9\'8e\'b8\'94\'73\'82\'b5\'82\'dc\'82\'b5\'82\'bd
+\f0 "\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4     \} \cf5 else\cf4  \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4         \cf7 NSLog\cf4 (\cf8 @"
+\f2 \'83\'66\'81\'5b\'83\'5e\'83\'78\'81\'5b\'83\'58\'83\'74\'83\'40\'83\'43\'83\'8b\'82\'f0\'8a\'4a\'82\'ad\'82\'b1\'82\'c6\'82\'aa\'82\'c5\'82\'ab\'82\'dc\'82\'b9\'82\'f1\'82\'c5\'82\'b5\'82\'bd
+\f0 "\cf4 );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4     \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4     
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4     
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf4 \}\
+\
+\
+\
+\pard\tx543\pardeftab543\pardirnatural\partightenfactor0
+\cf2 //int i;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //for (i = 0; i < (int)readSize; i++) \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //    //if( i % 16 == 0 ) printf( "\\n" );
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //    //printf("%02X", readJpegBuffer->buf[i]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //    if (readJpegBuffer->buf[i] == 0xFF) \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //        if (readJpegBuffer->buf[i+1] == 0xE1) \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            if (readJpegBuffer->buf[i + 255] == XMP[0]) \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //                printf("%02X", readJpegBuffer->buf[i + 255]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //        \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //    \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //\}
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf2 /*
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2  nt j;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2  for (j = 0; j < 28; j++) \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2  printf("%02X : %02X", readJpegBuffer->buf[i + 255 + j], XMP[j]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2  printf("\\n");
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2  \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2  */
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf2 /*
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2  printf("\\n");
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2  printf("%d", i);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2  printf("\\n");
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2  printf("%02X",readJpegBuffer->buf[i]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2  printf("\\n");
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2  printf("%02X",readJpegBuffer->buf[912]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2  printf("\\n");
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2  printf("%02X",readJpegBuffer->buf[1167]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2  printf("\\n");
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2  */
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf2 /*
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2  static const unsigned char XMLNS_XMP[] = \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2  0x78, 0x6D, 0x6C, 0x6E, 0x73, 0x3A, 0x78, 0x6D, 0x70, 0x3D, 0x22,
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2  0x68, 0x74, 0x74, 0x70, 0x3A, 0x2F, 0x2F, 0x6E, 0x73,
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2  0x2E, 0x61, 0x64, 0x6F, 0x62, 0x65, 0x2E, 0x63, 0x6F,
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2  0x6D, 0x2F, 0x78, 0x61, 0x70, 0x2F, 0x31, 0x2E, 0x30, 0x2F
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2  \};
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2  */
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf2 /*
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2  int i;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2  for (i = 0; i < (int)readSize; i++) \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2  if (readJpegBuffer->buf[i] == SOI) \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2  if (readJpegBuffer->buf[i+1] == APP1) \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2  
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2  if (readJpegBuffer->buf[i + 300] == XMP[0]) \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2  char readXmp[28] = \{\};
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2  int j;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2  for (j = 0; j < 28; j++) \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2  
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2  printf("%02X : %02X", readJpegBuffer->buf[i + 300 + j], XMP[j]);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2  printf("\\n");
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2  
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2  readXmp[j] = readJpegBuffer->buf[i + 300 + j];
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2  \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2  printf("%s", readXmp);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2  printf("\\n");
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2  printf("%d", i);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2  printf("\\n");
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2  \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2  \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2  \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2  \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2  
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2  int len = (int)strlen(rdf);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2  printf("rdf
+\f2 \'82\'cc\'95\'b6\'8e\'9a\'97\'f1\'82\'cc\'92\'b7\'82\'b3\'82\'cd
+\f0 \uc0\u8594 %d\\n",len);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2  */
+\f1\fs24 \cf0 \
+\
+
+\f0\fs22 \cf2 //
+\f2 \'83\'74\'83\'40\'83\'43\'83\'8b\'83\'49\'81\'5b\'83\'76\'83\'93
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //    fpw = fopen(dst, "wb");
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //    if (fpw == NULL) \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //        printf( "
+\f2 \'8f\'91\'8d\'9e\'97\'70\'83\'74\'83\'40\'83\'43\'83\'8b\'82\'aa\'8a\'4a\'82\'af\'82\'dc\'82\'b9\'82\'f1
+\f0 ");
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //        return -1;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //    \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //    char tmp;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //    char ins[2] = "t!";
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //    while (1) \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //        if (ftell(fpr) == 1213) \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            fwrite(&ins, sizeof(ins), 1, fpw);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //        \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //        if (fread(&tmp, sizeof(tmp), 1, fpr) == 0) \{
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //            break;
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //        \}
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //        fwrite(&tmp, sizeof(tmp), 1, fpw);
+\f1\fs24 \cf0 \
+
+\f0\fs22 \cf2 //    \}\cf4 \
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+}
